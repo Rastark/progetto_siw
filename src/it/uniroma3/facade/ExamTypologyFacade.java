@@ -14,7 +14,7 @@ public class ExamTypologyFacade {
 
 	public ExamTypologyFacade() {}
 
-	@PersistenceContext(unitName = "placeholder")
+	@PersistenceContext(unitName = "dawnstone")
 	private EntityManager em;
 
 	/**
@@ -43,13 +43,12 @@ public class ExamTypologyFacade {
 	 * @return
 	 */
 	
-	public List<ExamTypology> getAllTypologies() {
+	public List<ExamTypology> getAllExamTypologies() {
 		CriteriaQuery<ExamTypology> cq = em.getCriteriaBuilder().createQuery(ExamTypology.class);
 		cq.select(cq.from(ExamTypology.class));
 		List<ExamTypology> typologiesList = em.createQuery(cq).getResultList();
 		return typologiesList;
 	}
-	
-	
+
 }
 

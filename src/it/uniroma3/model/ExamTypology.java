@@ -1,4 +1,5 @@
 package it.uniroma3.model;
+import java.util.List;
 import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -6,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 @Entity
 @NamedQuery(name= "findAllExamTypology", query="SELECT t FROM ExamTypology t")
@@ -26,6 +28,10 @@ public class ExamTypology {
 	
 	@Column(nullable=false)
 	private float cost;
+	
+	@OneToMany(mappedBy = "et")
+    private List<Exam> exams;
+
 	
 	//private Map<String, String> prereqMap;
 	
