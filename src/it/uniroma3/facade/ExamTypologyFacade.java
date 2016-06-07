@@ -9,7 +9,7 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import it.uniroma3.model.ExamTypology;
 
-@Stateless
+@Stateless(name="etFacade")
 public class ExamTypologyFacade {
 
 	public ExamTypologyFacade() {}

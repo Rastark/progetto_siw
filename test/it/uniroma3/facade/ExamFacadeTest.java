@@ -14,7 +14,7 @@ import it.uniroma3.model.ExamTypology;
 public class ExamFacadeTest {
 	private ExamTypology et = new ExamTypology("Cardiologico", "CARDGV170516", "Esame cardiologico", 300.2F);
 	private ExamFacade examFacade = new ExamFacade();
-	private ExamController examController;
+	private ExamController examController = new ExamController();
 	private String dataVisita = "20/06/1992";
 	
 	
@@ -22,7 +22,7 @@ public class ExamFacadeTest {
 	public void createExamTest() throws ParseException {
 		this.examController.setExamFacade(examFacade);
 		Exam exam = this.examController.getExamFacade().createExam(et, dataVisita);
-		assertNotNull(exam);
+		assertNotNull(this.examController.getExamFacade().getExam(exam.getId()));
 	}
 
 }

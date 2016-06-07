@@ -14,7 +14,7 @@ import it.uniroma3.model.Prerequisite;
 @ManagedBean
 public class ExamTypologyController {
 	
-	@EJB
+	@EJB(beanName="etFacade")
 	private ExamTypologyFacade examTypologyFacade;
 
 	@ManagedProperty(value="#{param.id}")

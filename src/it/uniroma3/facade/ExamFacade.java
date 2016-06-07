@@ -13,7 +13,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import it.uniroma3.model.Exam;
 import it.uniroma3.model.ExamTypology;
 
-@Stateless
+@Stateless(name="eFacade")
 public class ExamFacade {
 
 	@PersistenceContext(unitName="dawnstone")
