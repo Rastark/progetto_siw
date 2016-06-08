@@ -1,6 +1,7 @@
 package it.uniroma3.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,12 +21,6 @@ public class Exam {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
-	@ManyToOne
-	private ExamTypology et;
-	
-	@ManyToOne
-	private Medic medic;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date prenotationDate;
@@ -34,13 +30,24 @@ public class Exam {
 	
 	@Column(nullable=false, unique=true)
 	private String code;
+
+	@ManyToOne
+	private ExamTypology examTypology;
 	
+	@ManyToOne
+	private Medic medic;
 	
-	public Exam(ExamTypology et, Date prenotationDate, Date visitDate, Long id) {
-		this.et = et;
+	@ManyToOne
+	private Patient patient;
+	
+	@OneToMany(mappedBy="exam")
+	private List<Result> results;
+	
+	public Exam(ExamTypology et, Date prenotationDate, Date visitDate, String code) {
+		this.examTypology = et;
 		this.prenotationDate = prenotationDate;
 		this.visitDate = visitDate;
-		this.id = id;
+		this.code = code;
 	}
 	
 	public Exam(){}
@@ -49,16 +56,12 @@ public class Exam {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public ExamTypology getEt() {
-		return et;
+		return examTypology;
 	}
 
 	public void setEt(ExamTypology et) {
-		this.et = et;
+		this.examTypology = et;
 	}
 
 	public Date getPrenotationDate() {
@@ -84,4 +87,37 @@ public class Exam {
 	public void setCode(String code) {
 		this.code = code;
 	}
+
+	public ExamTypology getExamTypology() {
+		return examTypology;
+	}
+
+	public void setExamTypology(ExamTypology examTypology) {
+		this.examTypology = examTypology;
+	}
+
+	public Medic getMedic() {
+		return medic;
+	}
+
+	public void setMedic(Medic medic) {
+		this.medic = medic;
+	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public List<Result> getResults() {
+		return results;
+	}
+
+	public void setResults(List<Result> results) {
+		this.results = results;
+	}
+
 }

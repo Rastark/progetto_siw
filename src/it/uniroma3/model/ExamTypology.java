@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,11 +30,14 @@ public class ExamTypology {
 	@Column(nullable=false)
 	private float cost;
 	
-	@OneToMany(mappedBy = "et")
+	@OneToMany(mappedBy = "examTypology")
     private List<Exam> exams;
 
+	@ManyToMany
+	private List<Prerequisite> prerequisites;
 	
-	//private Map<String, String> prereqMap;
+	@ManyToMany(mappedBy="examTypologies")
+	private List<ResultTypology> resultTypologies;
 	
 	public ExamTypology(String name, String code, String description, float cost) {
 		this.name = name;
@@ -44,10 +48,6 @@ public class ExamTypology {
 	
 	public ExamTypology(){}
 	
-/*	public void addPrereq(String nome, String valore) {
-		this.prereqMap.put(nome, valore);
-	}
-*/	
 	public long getId() {
 		return this.id;
 	}

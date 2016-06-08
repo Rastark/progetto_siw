@@ -1,18 +1,15 @@
 package it.uniroma3.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.NamedQuery;
 
 @Entity
-@Table(name="Medics")
-public class Medic {
+@NamedQuery(name = "findAllAdmins", query = "SELECT a from Admin a")
+public class Admin {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,23 +21,20 @@ public class Medic {
 	@Column(nullable=false)
 	private String surname;
 	
-	@Column(nullable=false)
-	private String specialization;
+	@Column(nullable=false, unique=true)
+	private String email;
 	
-	@OneToMany(mappedBy="medic")
-	private List<Exam> exams;
-
-	public Medic(String name, String surname, String specialization) {
+	@Column(nullable=false)
+	private String password;
+	
+	public Admin(String name, String surname, String email, String password) {
 		this.name=name;
 		this.surname=surname;
-		this.specialization=specialization;
+		this.email=email;
+		this.password=password;
 	}
-	
-	public Medic() {}
-	
-	public Long getId() {
-		return id;
-	}
+
+	public Admin() {}
 
 	public String getName() {
 		return name;
@@ -58,21 +52,25 @@ public class Medic {
 		this.surname = surname;
 	}
 
-	public String getSpecialization() {
-		return specialization;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setSpecialization(String specialization) {
-		this.specialization = specialization;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public List<Exam> getExams() {
-		return exams;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setExams(List<Exam> exams) {
-		this.exams = exams;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
+	public Long getId() {
+		return id;
+	}
+	
 	
 }

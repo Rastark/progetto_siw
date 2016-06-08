@@ -26,4 +26,40 @@ public class Patient {
 
 	@OneToMany(mappedBy="patient")
 	private List<Exam> exams;
+	
+	public Patient(String name, String surname) {
+		this.name=name;
+		this.surname=surname;
+	}
+	
+	public Patient() {}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public List<Exam> getExams() {
+		return exams;
+	}
+
+	public void setExams(List<Exam> exams) {
+		this.exams = exams;
+	}
+
+	public Long getId() {
+		return id;
+	}
+	
 }

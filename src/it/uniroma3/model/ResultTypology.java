@@ -8,35 +8,31 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Prerequisites")
-public class Prerequisite {
-	
+@Table(name="Result Typologies")
+public class ResultTypology {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(nullable=false, unique=true)
+	@Column(nullable=false)
 	private String name;
 	
-	@Column(nullable=false)
-	private String description;
+	@OneToMany(mappedBy="resultTypology")
+	private List<Result> results;
 	
-	@ManyToMany(mappedBy="prerequisites")
+	@ManyToMany
 	private List<ExamTypology> examTypologies;
-
-	public Prerequisite(String name, String description) {
+	
+	public ResultTypology(String name) {
 		this.name=name;
-		this.description=description;
 	}
 	
-	public Prerequisite() {}
-	
-	public Long getId() {
-		return id;
-	}
+	public ResultTypology() {}
 
 	public String getName() {
 		return name;
@@ -46,12 +42,12 @@ public class Prerequisite {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
+	public List<Result> getResults() {
+		return results;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setResults(List<Result> results) {
+		this.results = results;
 	}
 
 	public List<ExamTypology> getExamTypologies() {
@@ -62,4 +58,8 @@ public class Prerequisite {
 		this.examTypologies = examTypologies;
 	}
 
+	public Long getId() {
+		return id;
+	}
+	
 }

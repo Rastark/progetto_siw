@@ -22,9 +22,6 @@ public class ExamTypologyController {
 	
 	private List<ExamTypology> examTypologies;
 	
-	@ManyToMany
-	private List<Prerequisite> prerequisites;
-	
 	public ExamTypologyFacade getExamTypologyFacade() {
 		return this.examTypologyFacade;
 	}
