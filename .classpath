@@ -24,5 +24,12 @@
 	<classpathentry kind="lib" path="C:/Users/alxau/Downloads/ejb-3_0-api.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="C:/Users/alxau/Downloads/javax.faces-2.3.0-m01.jar"/>
+	<classpathentry kind="lib" path="C:/Users/alxau/Downloads/jstl-1.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jsf">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+			<attribute name="owner.project.facets" value="jst.jsf"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

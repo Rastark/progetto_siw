@@ -3,6 +3,9 @@ package it.uniroma3.facade;
 import static org.junit.Assert.*;
 
 import java.text.ParseException;
+import java.util.Properties;
+
+import javax.naming.Context;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +23,6 @@ public class ExamFacadeTest {
 	
 	@Test
 	public void createExamTest() throws ParseException {
-		this.examController.setExamFacade(examFacade);
 		Exam exam = this.examController.getExamFacade().createExam(et, dataVisita);
 		assertNotNull(this.examController.getExamFacade().getExam(exam.getId()));
 	}

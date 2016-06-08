@@ -20,6 +20,19 @@ public class ExamTypologyController {
 	@ManagedProperty(value="#{param.id}")
 	private Long id;
 	
+	private String name;
+	private String code;
+	private String description;
+	private float cost;
+	
+	public String createExamTypology() {
+		ExamTypologyFacade examTypologyFacade = new ExamTypologyFacade();
+		examTypologyFacade.createTypology(name,code,description,cost);
+		return "name";
+	}
+	
+//	public String createExamTypology() {}
+	
 	private List<ExamTypology> examTypologies;
 	
 	public ExamTypologyFacade getExamTypologyFacade() {
