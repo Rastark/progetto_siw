@@ -9,6 +9,11 @@
 		<class>it.uniroma3.model.ExamTypology</class>
 		<class>it.uniroma3.model.Exam</class>
 		<class>it.uniroma3.model.Medic</class>
+		<class>it.uniroma3.model.Admin</class>
+		<class>it.uniroma3.model.Patient</class>
+		<class>it.uniroma3.model.Prerequisite</class>
+		<class>it.uniroma3.model.Result</class>
+		<class>it.uniroma3.model.ResultTypology</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 			<property name="javax.persistence.jdbc.user" value="postgres" />

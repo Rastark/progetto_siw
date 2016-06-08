@@ -18,7 +18,7 @@ public class ExamController {
 	@EJB
 	private ExamTypologyFacade examTypologyFacade;
 	
-	@EJB(beanName="eFacade")
+	@EJB
 	private ExamFacade examFacade;
 
 	@ManagedProperty(value="#{param.id}")

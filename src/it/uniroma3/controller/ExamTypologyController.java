@@ -14,7 +14,7 @@ import it.uniroma3.model.Prerequisite;
 @ManagedBean
 public class ExamTypologyController {
 	
-	@EJB(beanName="etFacade")
+	@EJB
 	private ExamTypologyFacade examTypologyFacade;
 
 	@ManagedProperty(value="#{param.id}")
@@ -46,5 +46,41 @@ public class ExamTypologyController {
 	public List<ExamTypology> getListExamTypologies() {
 		return this.examTypologyFacade.getAllExamTypologies();
 	}
-	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public float getCost() {
+		return cost;
+	}
+
+	public void setCost(float cost) {
+		this.cost = cost;
+	}
+
+	public String getName() {
+		return name;
+	}
+
 }
