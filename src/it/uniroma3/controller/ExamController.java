@@ -2,19 +2,17 @@ package it.uniroma3.controller;
 
 import java.text.ParseException;
 import java.util.Date;
+import org.springframework.stereotype.Controller;
 
-import javax.ejb.EJB;
 import it.uniroma3.facade.ExamFacade;
 import it.uniroma3.facade.ExamTypologyFacade;
 import it.uniroma3.model.Exam;
 import it.uniroma3.model.ExamTypology;
 
+@Controller
 public class ExamController {
 
-	@EJB
 	private ExamTypologyFacade examTypologyFacade;
-	
-	@EJB
 	private ExamFacade examFacade;
 
 	private Long id;

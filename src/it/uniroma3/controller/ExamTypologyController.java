@@ -2,16 +2,20 @@ package it.uniroma3.controller;
 
 import java.util.List;
 
-import javax.ejb.EJB;
+
 import javax.persistence.ManyToMany;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import it.uniroma3.facade.ExamTypologyFacade;
 import it.uniroma3.model.ExamTypology;
 import it.uniroma3.model.Prerequisite;
 
+@Controller
+@RequestMapping("/examTypology")
 public class ExamTypologyController {
 	
-	@EJB
 	private ExamTypologyFacade examTypologyFacade;
 
 	private Long id;	
@@ -20,10 +24,9 @@ public class ExamTypologyController {
 	private String description;
 	private float cost;
 	
-	public String createExamTypology() {
-		ExamTypologyFacade examTypologyFacade = new ExamTypologyFacade();
-		examTypologyFacade.createTypology(name,code,description,cost);
-		return "name";
+	@ModelAttribute("examTypology")
+	public ExamTypology createExamTypologyModel() {
+		return new ExamTypology();
 	}
 	
 //	public String createExamTypology() {}

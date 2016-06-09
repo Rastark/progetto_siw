@@ -1,15 +1,12 @@
 package it.uniroma3.facade;
 
 import java.util.List;
-
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 
 import it.uniroma3.model.ExamTypology;
 
-@Stateless
 public class ExamTypologyFacade {
 
 	public ExamTypologyFacade() {}
