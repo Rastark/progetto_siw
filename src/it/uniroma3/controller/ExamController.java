@@ -4,15 +4,11 @@ import java.text.ParseException;
 import java.util.Date;
 
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-
 import it.uniroma3.facade.ExamFacade;
 import it.uniroma3.facade.ExamTypologyFacade;
 import it.uniroma3.model.Exam;
 import it.uniroma3.model.ExamTypology;
 
-@ManagedBean
 public class ExamController {
 
 	@EJB
@@ -21,7 +17,6 @@ public class ExamController {
 	@EJB
 	private ExamFacade examFacade;
 
-	@ManagedProperty(value="#{param.id}")
 	private Long id;
 	private String visitDate;
 	private ExamTypology examTypology;
