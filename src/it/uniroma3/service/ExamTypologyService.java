@@ -14,15 +14,19 @@ public class ExamTypologyService {
 	@Autowired
 	private ExamTypologyDao examTypologyDao;
 	
+	public ExamTypology getExamTypology(Long id) {
+		return this.examTypologyDao.getExamTypology(id);
+	}
+	
 	public List<ExamTypology> listExamTypology() {
 		return this.examTypologyDao.getAllExamTypologies();
 	}
 	
 	public void insertExamTypology(ExamTypology examTypology) {
-		this.examTypologyDao.insertExamTypology();
+		this.examTypologyDao.insertExamTypology(examTypology);
 	}
 	
 	public void deleteExamTypology(Long id) {
-		this.examTypologyDao.deleteExamTypology();
+		this.examTypologyDao.deleteExamTypology(id);
 	}
 }

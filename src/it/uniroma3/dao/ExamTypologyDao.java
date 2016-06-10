@@ -22,7 +22,7 @@ public class ExamTypologyDao {
 	 * @param id
 	 * @return the typology with the requested id
 	 */
-	public ExamTypology getTypology(Long id) {
+	public ExamTypology getExamTypology(Long id) {
 		ExamTypology typology = em.find(ExamTypology.class, id);
 		return typology;
 	}

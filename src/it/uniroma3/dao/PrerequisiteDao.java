@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import it.uniroma3.model.Patient;
+import it.uniroma3.model.Prerequisite;
 
 @Repository
 public class PrerequisiteDao {
@@ -18,24 +18,24 @@ public class PrerequisiteDao {
 	@PersistenceContext(unitName = "dawnstone")
 	private EntityManager em;
 	
-	public Patient getPatient(Long id) {
-		Patient patient = em.find(Patient.class, id);
-		return patient;
+	public Prerequisite getPrerequisite(Long id) {
+		Prerequisite prerequisite = em.find(Prerequisite.class, id);
+		return prerequisite;
 	}
 	
-	public List<Patient> getAllPatient() {
-		List<Patient> listPatient = em.createQuery("SELECT p FROM Patient p", Patient.class).getResultList();
-		return listPatient;
+	public List<Prerequisite> getAllPrerequisites() {
+		List<Prerequisite> listPrerequisite = em.createQuery("SELECT p FROM Prerequisite p", Prerequisite.class).getResultList();
+		return listPrerequisite;
 	}
 	
 	@Transactional 
-	public void insertPatient(Patient patient) {
-		em.persist(patient);
+	public void insertPrerequisite(Prerequisite prerequisite) {
+		em.persist(prerequisite);
 	}
 	
 	@Transactional
-	public void deletePatient(Long id) {
-		Patient patient = em.find(Patient.class, id);
-		em.remove(patient);
+	public void deletePrerequisite(Long id) {
+		Prerequisite prerequisite = em.find(Prerequisite.class, id);
+		em.remove(prerequisite);
 	}
 }
