@@ -1,39 +1,22 @@
 package it.uniroma3.dao;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaQuery;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.model.Exam;
-import it.uniroma3.model.ExamTypology;
 
 @Repository
 public class ExamDao {
 
-	@PersistenceContext(unitName="dawnstone")
+	@Autowired
+	@PersistenceContext(unitName = "dawnstone")
 	private EntityManager em;
-	
-	public ExamDao() {}
-	
-	/** Creates an exam of the selected typology, the exam is persisted
-	 */
-	public Exam createExam(ExamTypology et, String visitDate) throws ParseException {
-		Exam exam = new Exam();
-		exam.setEt(et);
-		Date creationTime = new Date();
-		exam.setPrenotationDate(creationTime);
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Date vd = sdf.parse(visitDate);
-		exam.setVisitDate(vd);
-		em.persist(exam);
-		return exam;
-	}
 	
 	public Exam getExam(Long id) {
 		Exam exam = em.find(Exam.class, id);
@@ -41,22 +24,45 @@ public class ExamDao {
 	}
 	
 	public List<Exam> getAllExams () {
-		CriteriaQuery<Exam> cq = em.getCriteriaBuilder().createQuery(Exam.class);
-		cq.select(cq.from(Exam.class));
-		List<Exam> examsList = em.createQuery(cq).getResultList();
-		return examsList;
+//		*** VERSIONE VECCHIA CON CRITERIAQUERY ***
+//		CriteriaQuery<Exam> cq = em.getCriteriaBuilder().createQuery(Exam.class);
+//		cq.select(cq.from(Exam.class));
+//		List<Exam> examsList = em.createQuery(cq).getResultList();
+//		return examsList;
+		List<Exam> listExam = em.createQuery("SELECT e FROM Exams e", Exam.class).getResultList();
+		return listExam;
 	}
 	
-	public void updateExam(Exam exam) {
-		em.merge(exam);
-	}	
-
-	private void deleteExam(Exam exam) {
-		em.remove(exam);
+	@Transactional
+	public void insertExam(Exam exam) {
+		em.persist(exam);
 	}
 
+	@Transactional
 	public void deleteExam(Long id) {
 		Exam exam = em.find(Exam.class, id);
-		deleteExam(exam);
+		em.remove(exam);
 	}
+	
+//	/** Creates an exam of the selected typology, the exam is persisted
+//	 */
+//	public Exam createExam(ExamTypology et, String visitDate) throws ParseException {
+//		Exam exam = new Exam();
+//		exam.setEt(et);
+//		Date creationTime = new Date();
+//		exam.setPrenotationDate(creationTime);
+//		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//		Date vd = sdf.parse(visitDate);
+//		exam.setVisitDate(vd);
+//		em.persist(exam);
+//		return exam;
+//	}
+	
+//	public void updateExam(Exam exam) {
+//		em.merge(exam);
+//	}	
+
+//	private void deleteExam(Exam exam) {
+//		em.remove(exam);
+//	}
 }
