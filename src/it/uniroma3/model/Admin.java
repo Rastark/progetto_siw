@@ -6,8 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="Admin")
 @NamedQuery(name = "findAllAdmins", query = "SELECT a from Admin a")
 public class Admin {
 	
