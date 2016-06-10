@@ -25,11 +25,6 @@ public class ExamTypologyController extends WebMvcConfigurerAdapter{
 	@Autowired
 	private ExamTypologyService examTypologyService;
 
-	@ModelAttribute("examTypology")
-	public ExamTypology createExamTypologyModel() {
-		return new ExamTypology();
-	}
-
 	@Autowired
 	@Qualifier("examTypologyValidator")
 	private Validator validator;
@@ -38,9 +33,12 @@ public class ExamTypologyController extends WebMvcConfigurerAdapter{
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);
 	}
-
-	private List<ExamTypology> examTypologies;
-
+	
+	@ModelAttribute("examTypology")
+	public ExamTypology createExamTypologyModel() {
+		return new ExamTypology();
+	}
+	
 	@RequestMapping(value="/listexamtypology", method = RequestMethod.GET)
 	public String listExamTypology(Model model) {
 		model.addAttribute("examTypologiesList", examTypologyService.listExamTypology());
