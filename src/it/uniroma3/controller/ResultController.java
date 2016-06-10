@@ -22,16 +22,17 @@ import it.uniroma3.dao.ExamDao;
 import it.uniroma3.dao.ExamTypologyDao;
 import it.uniroma3.model.Exam;
 import it.uniroma3.model.ExamTypology;
+import it.uniroma3.model.Result;
 
 @Controller
-@RequestMapping("/exam")
-public class ExamController extends WebMvcConfigurerAdapter{
+@RequestMapping("/result")
+public class ResultController extends WebMvcConfigurerAdapter{
 	
 	@Autowired
-	ExamService examService;
+	ResultService resultService;
 	
 	@Autowired
-	@Qualifier("examValidator")
+	@Qualifier("resultValidator")
 	Validator validator;
 	
 	@InitBinder
@@ -39,38 +40,37 @@ public class ExamController extends WebMvcConfigurerAdapter{
 		binder.setValidator(validator);
 	}
 	
-	@ModelAttribute("exam")
-	public Exam createExamModel() {
-		return new Exam();
+	@ModelAttribute("result")
+	public Result createResultModel() {
+		return new Result();
 	}
 	
-	@RequestMapping("/listexam")
-	public String listExam(Model model) {
-		model.setAttribute("examsList", examService.listExam());
-		return "exam";
+	@RequestMapping("/listresult")
+	public String listResult(Model model) {
+		model.setAttribute("resultsList", resultService.listResult());
+		return "result";
 	}
 	
-	@RequestMapping(value="/addexam", method = RequestMethod.POST)
-	public String addExam(Model model) {
-		return "/addexam";
+	@RequestMapping(value="/addresult", method = RequestMethod.POST)
+	public String addResult(Model model) {
+		return "/addresult";
 	}
 	
-	@RequestMapping(value="/updateexam", method = RequestMethod.GET)
-	public String updateExam(@ModelAttribute("exam") @Validated Exam exam, BindingResult bindingResult, Model model) {
+	@RequestMapping(value="/updateresult", method = RequestMethod.GET)
+	public String updateResult(@ModelAttribute("result") @Validated Result result, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) 
-			return "addexam";
-		this.examService.insertExam(exam);
-		model.addAttribute("examList", examService.listExam());
-		return "exam";
+			return "addresult";
+		this.resultService.insertResult(result);
+		model.addAttribute("resultList", resultService.listResult());
+		return "result";
 	}
 	
-	@RequestMapping(value="/delete/{eId}", method = RequestMethod.GET)
-	public String deleteExamTypology(@PathVariable("eId") Long eId, Model model) {
-		this.examService.deleteExamTypology(eId);
-		model.addAttribute("examsList", examService.listExam());
-		return "exam";
+	@RequestMapping(value="/delete/{rId}", method = RequestMethod.GET)
+	public String deleteResult(@PathVariable("rId") Long rId, Model model) {
+		this.resultService.deleteResult(rId);
+		model.addAttribute("resultsList", resultService.listResult());
+		return "result";
 	}
 }
-
 
 
