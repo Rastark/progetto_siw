@@ -5,10 +5,12 @@ import java.util.List;
 
 
 import javax.persistence.ManyToMany;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.dao.ExamTypologyDao;
 import it.uniroma3.model.ExamTypology;
@@ -18,13 +20,10 @@ import it.uniroma3.model.Prerequisite;
 @RequestMapping("/examTypology")
 public class ExamTypologyController {
 	
-	private ExamTypologyDao examTypologyFacade;
-
-	private Long id;	
-	private String name;
-	private String code;
-	private String description;
-	private float cost;
+	private ExamTypologyDao examTypologyDao;
+	
+	@Autowired
+	private ExamTypologyService examTypologyService;
 	
 	@ModelAttribute("examTypology")
 	public ExamTypology createExamTypologyModel() {
@@ -33,10 +32,9 @@ public class ExamTypologyController {
 	
 	private List<ExamTypology> examTypologies;
 	
-	@RequestMapping(value="examTypologyList", method= RequestMethod.GET)
-	public List<ExamTypology> getExamTypologyList() {
-		List<ExamTypology> examTypologies = new LinkedList<ExamTypology>();
-	return examTypologies;
+	@RequestMapping(value="/listexamtypology", method= RequestMethod.GET)
+	public String listExamTypology(Model model) {
+		model.addAttribute("examTypologyList", examTypologyService.listExamTypology());
 	}	
 	
 	public void setExamTypologyFacade(ExamTypologyDao examTypologyFacade) {
