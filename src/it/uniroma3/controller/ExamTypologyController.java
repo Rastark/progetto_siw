@@ -65,4 +65,6 @@ public class ExamTypologyController extends WebMvcConfigurerAdapter{
 		model.addAttribute("examTypologiesList", examTypologyService.listExamTypology());
 		return "examTypology";
 	}
+	
+	
 }
