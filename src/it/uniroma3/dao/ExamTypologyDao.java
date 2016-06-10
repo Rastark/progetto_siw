@@ -5,8 +5,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 
+import org.springframework.stereotype.Repository;
+
 import it.uniroma3.model.ExamTypology;
 
+@Repository
 public class ExamTypologyDao {
 
 	public ExamTypologyDao() {}
