@@ -1,84 +1,70 @@
 package it.uniroma3.controller;
 
-import java.util.LinkedList;
 import java.util.List;
-
-
-import javax.persistence.ManyToMany;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import it.uniroma3.dao.ExamTypologyDao;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import it.uniroma3.model.ExamTypology;
-import it.uniroma3.model.Prerequisite;
+import it.uniroma3.service.ExamTypologyService;
 
 @Controller
 @RequestMapping("/examTypology")
-public class ExamTypologyController {
-	
-	private ExamTypologyDao examTypologyDao;
-	
+public class ExamTypologyController extends WebMvcConfigurerAdapter{
+
 	@Autowired
 	private ExamTypologyService examTypologyService;
-	
+
 	@ModelAttribute("examTypology")
 	public ExamTypology createExamTypologyModel() {
 		return new ExamTypology();
 	}
-	
+
+	@Autowired
+	@Qualifier("examTypologyValidator")
+	private Validator validator;
+
+	@InitBinder
+	private void initBinder(WebDataBinder binder) {
+		binder.setValidator(validator);
+	}
+
 	private List<ExamTypology> examTypologies;
-	
-	@RequestMapping(value="/listexamtypology", method= RequestMethod.GET)
+
+	@RequestMapping(value="/listexamtypology", method = RequestMethod.GET)
 	public String listExamTypology(Model model) {
-		model.addAttribute("examTypologyList", examTypologyService.listExamTypology());
+		model.addAttribute("examTypologiesList", examTypologyService.listExamTypology());
+		return "examTypology";
 	}	
 	
-	public void setExamTypologyFacade(ExamTypologyDao examTypologyFacade) {
-		this.examTypologyFacade = examTypologyFacade;
-	}
-	
-	public List<ExamTypology> getListExamTypologies() {
-		return this.examTypologyFacade.getAllExamTypologies();
+	@RequestMapping(value = "/addexamtypology", method = RequestMethod.GET)
+	public String addEmployee(Model model) {
+		return "/addexamtypology";
 	}
 
-	public Long getId() {
-		return id;
+	@RequestMapping(value="/updateexamtypology", method = RequestMethod.GET)
+	public String updateExamTypology(@ModelAttribute("examTypology") @Validated ExamTypology examTypology, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors()) 
+			return "addexamtypology";
+		this.examTypologyService.insertExamTypology(examTypology);
+		model.addAttribute("examTypologiesList", examTypologyService.listExamTypology());
+		return "examTypology";
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	@RequestMapping(value="/delete/{etId}", method = RequestMethod.GET)
+	public String deleteExamTypology(@PathVariable("etid") Long etId, Model model) {
+		this.examTypologyService.deleteExamTypology(etId);
+		model.addAttribute("examTypologiesList", examTypologyService.listExamTypology());
+		return "examTypology";
 	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public float getCost() {
-		return cost;
-	}
-
-	public void setCost(float cost) {
-		this.cost = cost;
-	}
-
-	public String getName() {
-		return name;
-	}
-
 }
