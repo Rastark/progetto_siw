@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import it.uniroma3.facade.ExamTypologyFacade;
+import it.uniroma3.dao.ExamTypologyDao;
 import it.uniroma3.model.ExamTypology;
 import it.uniroma3.model.Prerequisite;
 
@@ -16,7 +16,7 @@ import it.uniroma3.model.Prerequisite;
 @RequestMapping("/examTypology")
 public class ExamTypologyController {
 	
-	private ExamTypologyFacade examTypologyFacade;
+	private ExamTypologyDao examTypologyFacade;
 
 	private Long id;	
 	private String name;
@@ -33,11 +33,11 @@ public class ExamTypologyController {
 	
 	private List<ExamTypology> examTypologies;
 	
-	public ExamTypologyFacade getExamTypologyFacade() {
+	public ExamTypologyDao getExamTypologyFacade() {
 		return this.examTypologyFacade;
 	}
 	
-	public void setExamTypologyFacade(ExamTypologyFacade examTypologyFacade) {
+	public void setExamTypologyFacade(ExamTypologyDao examTypologyFacade) {
 		this.examTypologyFacade = examTypologyFacade;
 	}
 	

@@ -1,4 +1,4 @@
-package it.uniroma3.facade;
+package it.uniroma3.dao;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -7,9 +7,9 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import it.uniroma3.model.ExamTypology;
 
-public class ExamTypologyFacade {
+public class ExamTypologyDao {
 
-	public ExamTypologyFacade() {}
+	public ExamTypologyDao() {}
 
 	@PersistenceContext(unitName = "dawnstone")
 	private EntityManager em;

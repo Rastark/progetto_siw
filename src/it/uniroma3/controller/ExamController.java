@@ -4,16 +4,16 @@ import java.text.ParseException;
 import java.util.Date;
 import org.springframework.stereotype.Controller;
 
-import it.uniroma3.facade.ExamFacade;
-import it.uniroma3.facade.ExamTypologyFacade;
+import it.uniroma3.dao.ExamDao;
+import it.uniroma3.dao.ExamTypologyDao;
 import it.uniroma3.model.Exam;
 import it.uniroma3.model.ExamTypology;
 
 @Controller
 public class ExamController {
 
-	private ExamTypologyFacade examTypologyFacade;
-	private ExamFacade examFacade;
+	private ExamTypologyDao examTypologyFacade;
+	private ExamDao examFacade;
 
 	private Long id;
 	private String visitDate;
@@ -25,19 +25,19 @@ public class ExamController {
 		return "exam";
 	}
 	
-	public ExamTypologyFacade getExamTypologyFacade() {
+	public ExamTypologyDao getExamTypologyFacade() {
 		return this.examTypologyFacade;
 	}
 
-	public void setExamTypologyFacade(ExamTypologyFacade examTypologyFacade) {
+	public void setExamTypologyFacade(ExamTypologyDao examTypologyFacade) {
 		this.examTypologyFacade = examTypologyFacade;
 	}
 	
-	public ExamFacade getExamFacade() {
+	public ExamDao getExamFacade() {
 		return this.examFacade;
 	}
 	
-	public void setExamFacade(ExamFacade examFacade) {
+	public void setExamFacade(ExamDao examFacade) {
 		this.examFacade = examFacade;
 	}
 	

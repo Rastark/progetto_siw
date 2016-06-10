@@ -1,4 +1,4 @@
-package it.uniroma3.facade;
+package it.uniroma3.dao;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,15 +8,18 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 
+import org.springframework.stereotype.Repository;
+
 import it.uniroma3.model.Exam;
 import it.uniroma3.model.ExamTypology;
 
-public class ExamFacade {
+@Repository
+public class ExamDao {
 
 	@PersistenceContext(unitName="dawnstone")
 	private EntityManager em;
 	
-	public ExamFacade() {}
+	public ExamDao() {}
 	
 	/** Creates an exam of the selected typology, the exam is persisted
 	 */

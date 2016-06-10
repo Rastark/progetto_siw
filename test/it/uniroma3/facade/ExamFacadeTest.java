@@ -11,12 +11,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import it.uniroma3.controller.ExamController;
+import it.uniroma3.dao.ExamDao;
 import it.uniroma3.model.Exam;
 import it.uniroma3.model.ExamTypology;
 
 public class ExamFacadeTest {
 	private ExamTypology et = new ExamTypology("Cardiologico", "CARDGV170516", "Esame cardiologico", 300.2F);
-	private ExamFacade examFacade = new ExamFacade();
+	private ExamDao examFacade = new ExamDao();
 	private ExamController examController = new ExamController();
 	private String dataVisita = "20/06/1992";
 	

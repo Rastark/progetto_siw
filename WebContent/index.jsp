@@ -10,6 +10,6 @@
 		</h1>
 	</div>
 	<div>Naviga nel sito:</div>
-	<div><h:link value = "crea nuova tipologia d'esame" outcome="newExamTypology.xhtml"/></div>
+	<div><a href = "newExamTypology.jsp">crea nuova tipologia d'esame</a></div>
 </body>
 </html>
