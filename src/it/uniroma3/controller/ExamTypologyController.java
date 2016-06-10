@@ -45,8 +45,8 @@ public class ExamTypologyController extends WebMvcConfigurerAdapter{
 		return "examTypology";
 	}	
 	
-	@RequestMapping(value = "/addexamtypology", method = RequestMethod.GET)
-	public String addEmployee(Model model) {
+	@RequestMapping(value = "/addexamtypology", method = RequestMethod.POST)
+	public String addExamTypology(Model model) {
 		return "/addexamtypology";
 	}
 
