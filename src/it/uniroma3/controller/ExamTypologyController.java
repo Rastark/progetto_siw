@@ -1,5 +1,6 @@
 package it.uniroma3.controller;
 
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -7,6 +8,7 @@ import javax.persistence.ManyToMany;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.dao.ExamTypologyDao;
 import it.uniroma3.model.ExamTypology;
@@ -29,13 +31,13 @@ public class ExamTypologyController {
 		return new ExamTypology();
 	}
 	
-//	public String createExamTypology() {}
-	
 	private List<ExamTypology> examTypologies;
 	
-	public ExamTypologyDao getExamTypologyFacade() {
-		return this.examTypologyFacade;
-	}
+	@RequestMapping(value="examTypologyList", method= RequestMethod.GET)
+	public List<ExamTypology> getExamTypologyList() {
+		List<ExamTypology> examTypologies = new LinkedList<ExamTypology>();
+	return examTypologies;
+	}	
 	
 	public void setExamTypologyFacade(ExamTypologyDao examTypologyFacade) {
 		this.examTypologyFacade = examTypologyFacade;

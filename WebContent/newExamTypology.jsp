@@ -17,6 +17,8 @@
 	<div>Naviga nel sito:</div>
 	<div>
 		<a href="newExamTypology.jsp">crea nuova tipologia d'esame</a>
+		<p>Ciao!</p>
 	</div>
+	</springForm:form>
 </body>
 </html>
