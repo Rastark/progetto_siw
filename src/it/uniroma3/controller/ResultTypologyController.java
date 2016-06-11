@@ -24,6 +24,7 @@ import it.uniroma3.model.Exam;
 import it.uniroma3.model.ExamTypology;
 import it.uniroma3.model.Result;
 import it.uniroma3.model.ResultTypology;
+import it.uniroma3.service.ResultTypologyService;
 
 @Controller
 @RequestMapping("/resulttypology")
@@ -48,7 +49,7 @@ public class ResultTypologyController extends WebMvcConfigurerAdapter{
 	
 	@RequestMapping("/listresulttypology")
 	public String listResultTypology(Model model) {
-		model.setAttribute("resultTypologiesList", resultTypologyService.listResultTypology());
+		model.addAttribute("resultTypologiesList", resultTypologyService.listResultTypology());
 		return "resulttypology";
 	}
 	

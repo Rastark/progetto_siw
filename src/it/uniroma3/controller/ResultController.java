@@ -23,6 +23,7 @@ import it.uniroma3.dao.ExamTypologyDao;
 import it.uniroma3.model.Exam;
 import it.uniroma3.model.ExamTypology;
 import it.uniroma3.model.Result;
+import it.uniroma3.service.ResultService;
 
 @Controller
 @RequestMapping("/result")
@@ -47,7 +48,7 @@ public class ResultController extends WebMvcConfigurerAdapter{
 	
 	@RequestMapping("/listresult")
 	public String listResult(Model model) {
-		model.setAttribute("resultsList", resultService.listResult());
+		model.addAttribute("resultsList", resultService.listResult());
 		return "result";
 	}
 	

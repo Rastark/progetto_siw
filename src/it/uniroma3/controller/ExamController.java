@@ -22,6 +22,7 @@ import it.uniroma3.dao.ExamDao;
 import it.uniroma3.dao.ExamTypologyDao;
 import it.uniroma3.model.Exam;
 import it.uniroma3.model.ExamTypology;
+import it.uniroma3.service.ExamService;
 
 @Controller
 @RequestMapping("/exam")
@@ -46,7 +47,7 @@ public class ExamController extends WebMvcConfigurerAdapter{
 	
 	@RequestMapping("/listexam")
 	public String listExam(Model model) {
-		model.setAttribute("examsList", examService.listExam());
+		model.addAttribute("examsList", examService.listExam());
 		return "exam";
 	}
 	
@@ -66,7 +67,7 @@ public class ExamController extends WebMvcConfigurerAdapter{
 	
 	@RequestMapping(value="/delete/{eId}", method = RequestMethod.GET)
 	public String deleteExamTypology(@PathVariable("eId") Long eId, Model model) {
-		this.examService.deleteExamTypology(eId);
+		this.examService.deleteExam(eId);
 		model.addAttribute("examsList", examService.listExam());
 		return "exam";
 	}
