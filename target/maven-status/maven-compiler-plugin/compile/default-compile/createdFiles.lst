@@ -1,0 +1,6 @@
+it/uniroma3/validator/PatientValidator.class
+it/uniroma3/controller/PatientController.class
+it/uniroma3/validator/ResultTypologyValidator.class
+it/uniroma3/validator/ResultValidator.class
+it/uniroma3/validator/ExamTypologyValidator.class
+it/uniroma3/validator/ExamValidator.class

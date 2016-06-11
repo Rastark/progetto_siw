@@ -11,37 +11,44 @@ import org.springframework.transaction.annotation.Transactional;
 import it.uniroma3.model.ExamTypology;
 
 @Repository
-public class ExamTypologyDao {
+public class ExamTypologyDaoImpl implements ExamTypologyDao {
 
 	@Autowired
 	@PersistenceContext(unitName = "dawnstone")
 	private EntityManager em;
 
-	/**
-	 * Gets an ExamTypology from its id
-	 * @param id
-	 * @return the typology with the requested id
+	/* (non-Javadoc)
+	 * @see it.uniroma3.dao.ExamTypologyDao#getExamTypology(java.lang.Long)
 	 */
+	@Override
 	public ExamTypology getExamTypology(Long id) {
 		ExamTypology typology = em.find(ExamTypology.class, id);
 		return typology;
 	}
 
-	/**
-	 * Gets all typologies in the database
-	 * @return
+	/* (non-Javadoc)
+	 * @see it.uniroma3.dao.ExamTypologyDao#getAllExamTypologies()
 	 */
 	
+	@Override
 	public List<ExamTypology> getAllExamTypologies() {
 		List<ExamTypology> listExamTypology = em.createQuery("SELECT e FROM ExamTypology e", ExamTypology.class).getResultList();
 		return listExamTypology;
 	}
 	
+	/* (non-Javadoc)
+	 * @see it.uniroma3.dao.ExamTypologyDao#insertExamTypology(it.uniroma3.model.ExamTypology)
+	 */
+	@Override
 	@Transactional
 	public void insertExamTypology(ExamTypology examTypology) {
 		em.persist(examTypology);
 	}
 	
+	/* (non-Javadoc)
+	 * @see it.uniroma3.dao.ExamTypologyDao#deleteExamTypology(java.lang.Long)
+	 */
+	@Override
 	@Transactional
 	public void deleteExamTypology(Long id) {
 		ExamTypology examTypology = em.find(ExamTypology.class, id);

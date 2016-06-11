@@ -12,27 +12,43 @@ import org.springframework.transaction.annotation.Transactional;
 import it.uniroma3.model.Admin;
 
 @Repository
-public class AdminDao {
+public class AdminDaoImpl implements AdminDao {
 	
 	@Autowired
 	@PersistenceContext(unitName = "dawnstone")
 	private EntityManager em;
 	
+	/* (non-Javadoc)
+	 * @see it.uniroma3.dao.AdminDao#getAdmin(java.lang.Long)
+	 */
+	@Override
 	public Admin getAdmin(Long id) {
 		Admin admin = em.find(Admin.class, id);
 		return admin;
 	}
 	
+	/* (non-Javadoc)
+	 * @see it.uniroma3.dao.AdminDao#getAllAdmins()
+	 */
+	@Override
 	public List<Admin> getAllAdmins() {
 		List<Admin> listAdmin = em.createQuery("SELECT a FROM Admin a", Admin.class).getResultList();
 		return listAdmin;
 	}
 	
+	/* (non-Javadoc)
+	 * @see it.uniroma3.dao.AdminDao#insertAdmin(it.uniroma3.model.Admin)
+	 */
+	@Override
 	@Transactional
 	public void insertAdmin(Admin admin) {
 		em.persist(admin);
 	}
 	
+	/* (non-Javadoc)
+	 * @see it.uniroma3.dao.AdminDao#deleteAdmin(java.lang.Long)
+	 */
+	@Override
 	@Transactional
 	public void deleteAdmin(Long id) {
 		Admin admin = em.find(Admin.class, id);

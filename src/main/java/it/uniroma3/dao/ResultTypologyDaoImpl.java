@@ -12,27 +12,43 @@ import org.springframework.transaction.annotation.Transactional;
 import it.uniroma3.model.ResultTypology;
 
 @Repository
-public class ResultTypologyDao {
+public class ResultTypologyDaoImpl implements ResultTypologyDao {
 	
 	@Autowired
 	@PersistenceContext(unitName = "dawnstone")
 	private EntityManager em;
 	
+	/* (non-Javadoc)
+	 * @see it.uniroma3.dao.ResultTypologyDao#getResultTypology(java.lang.Long)
+	 */
+	@Override
 	public ResultTypology getResultTypology(Long id) {
 		ResultTypology resultTypology = em.find(ResultTypology.class, id);
 		return resultTypology;
 	}
 	
+	/* (non-Javadoc)
+	 * @see it.uniroma3.dao.ResultTypologyDao#getAllResultTypologies()
+	 */
+	@Override
 	public List<ResultTypology> getAllResultTypologies() {
 		List<ResultTypology> listResultTypology = em.createQuery("SELECT r FROM ResultTypology r", ResultTypology.class).getResultList();
 		return listResultTypology;
 	}
 	
+	/* (non-Javadoc)
+	 * @see it.uniroma3.dao.ResultTypologyDao#insertResultTypology(it.uniroma3.model.ResultTypology)
+	 */
+	@Override
 	@Transactional
 	public void insertResultTypology(ResultTypology resultTypology) {
 		em.persist(resultTypology);
 	}
 	
+	/* (non-Javadoc)
+	 * @see it.uniroma3.dao.ResultTypologyDao#deleteResultTypology(java.lang.Long)
+	 */
+	@Override
 	@Transactional
 	public void deleteResultTypology(Long id) {
 		ResultTypology resultTypology = em.find(ResultTypology.class, id);

@@ -12,17 +12,25 @@ import org.springframework.transaction.annotation.Transactional;
 import it.uniroma3.model.Exam;
 
 @Repository
-public class ExamDao {
+public class ExamDaoImpl implements ExamDao {
 
 	@Autowired
 	@PersistenceContext(unitName = "dawnstone")
 	private EntityManager em;
 	
+	/* (non-Javadoc)
+	 * @see it.uniroma3.dao.ExamDai#getExam(java.lang.Long)
+	 */
+	@Override
 	public Exam getExam(Long id) {
 		Exam exam = em.find(Exam.class, id);
 		return exam;
 	}
 	
+	/* (non-Javadoc)
+	 * @see it.uniroma3.dao.ExamDai#getAllExams()
+	 */
+	@Override
 	public List<Exam> getAllExams () {
 //		*** VERSIONE VECCHIA CON CRITERIAQUERY ***
 //		CriteriaQuery<Exam> cq = em.getCriteriaBuilder().createQuery(Exam.class);
@@ -33,11 +41,19 @@ public class ExamDao {
 		return listExam;
 	}
 	
+	/* (non-Javadoc)
+	 * @see it.uniroma3.dao.ExamDai#insertExam(it.uniroma3.model.Exam)
+	 */
+	@Override
 	@Transactional
 	public void insertExam(Exam exam) {
 		em.persist(exam);
 	}
 
+	/* (non-Javadoc)
+	 * @see it.uniroma3.dao.ExamDai#deleteExam(java.lang.Long)
+	 */
+	@Override
 	@Transactional
 	public void deleteExam(Long id) {
 		Exam exam = em.find(Exam.class, id);
