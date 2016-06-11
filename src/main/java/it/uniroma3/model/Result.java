@@ -58,5 +58,15 @@ public class Result {
 	public Long getId() {
 		return id;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return this.getValue().equals(((Result)obj).getValue());
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.getValue().hashCode();
+	}
 
 }

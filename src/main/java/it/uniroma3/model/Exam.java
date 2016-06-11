@@ -119,5 +119,14 @@ public class Exam {
 	public void setResults(List<Result> results) {
 		this.results = results;
 	}
-
+	
+	@Override
+	public boolean equals(Object obj) {
+		return this.getCode().equals(((Exam)obj).getCode());
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.getCode().hashCode();
+	}
 }

@@ -62,4 +62,13 @@ public class Prerequisite {
 		this.examTypologies = examTypologies;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return this.getName().equals(((Prerequisite) obj).getName());
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.getName().hashCode() + this.getDescription().hashCode();
+	}
 }

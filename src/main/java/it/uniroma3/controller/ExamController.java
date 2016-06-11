@@ -1,8 +1,5 @@
 package it.uniroma3.controller;
 
-import java.text.ParseException;
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -26,7 +23,7 @@ import it.uniroma3.service.ExamService;
 
 @Controller
 @RequestMapping("/exam")
-public class ExamController extends WebMvcConfigurerAdapter{
+	public class ExamController extends WebMvcConfigurerAdapter{
 	
 	@Autowired
 	private ExamService examService;

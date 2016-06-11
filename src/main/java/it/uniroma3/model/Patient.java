@@ -62,4 +62,15 @@ public class Patient {
 		return id;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		Patient patient = (Patient) obj;
+		return (this.getName().equals(patient.getName()) && this.getSurname().equals(patient.getSurname()));
+	}
+
+	@Override
+	public int hashCode() {
+		return this.getName().hashCode() + this.getSurname().hashCode();
+	}
+	
 }
