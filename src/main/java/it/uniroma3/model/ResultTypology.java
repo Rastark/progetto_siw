@@ -61,5 +61,14 @@ public class ResultTypology {
 	public Long getId() {
 		return id;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return this.getName().equals(((ResultTypology)obj).getName());
+	}
 	
+	@Override
+	public int hashCode() {
+		return this.getName().hashCode();
+	}
 }

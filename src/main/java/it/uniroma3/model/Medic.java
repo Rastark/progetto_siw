@@ -13,20 +13,20 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Medics")
 public class Medic {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(nullable=false)
 	private String name;
-	
+
 	@Column(nullable=false)
 	private String surname;
-	
+
 	@Column(nullable=false)
 	private String specialization;
-	
+
 	@OneToMany(mappedBy="medic")
 	private List<Exam> exams;
 
@@ -35,9 +35,9 @@ public class Medic {
 		this.surname=surname;
 		this.specialization=specialization;
 	}
-	
+
 	public Medic() {}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -74,5 +74,14 @@ public class Medic {
 		this.exams = exams;
 	}
 
-	
+	@Override
+	public boolean equals(Object obj) {
+		Medic medic = (Medic) obj;
+		return (this.getName().equals(medic.getName()) && this.getSurname().equals(medic.getSurname()) && this.getSpecialization().equals(medic.getSpecialization()));
+	}
+
+	@Override
+	public int hashCode() {
+		return this.getName().hashCode() + this.getSurname().hashCode() + this.getSpecialization().hashCode();
+	}
 }

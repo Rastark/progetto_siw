@@ -1,6 +1,6 @@
 package it.uniroma3.model;
+
 import java.util.List;
-import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;

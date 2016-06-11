@@ -74,5 +74,15 @@ public class Admin {
 		return id;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		return this.getEmail().equals(((Admin)obj).getEmail());
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.getEmail().hashCode();
+	}
+	
 	
 }

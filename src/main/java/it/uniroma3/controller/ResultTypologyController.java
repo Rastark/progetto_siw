@@ -1,8 +1,5 @@
 package it.uniroma3.controller;
 
-import java.text.ParseException;
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -17,12 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
-import it.uniroma3.dao.ExamDao;
-import it.uniroma3.dao.ExamTypologyDao;
-import it.uniroma3.model.Exam;
-import it.uniroma3.model.ExamTypology;
-import it.uniroma3.model.Result;
 import it.uniroma3.model.ResultTypology;
 import it.uniroma3.service.ResultTypologyService;
 
