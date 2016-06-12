@@ -30,6 +30,7 @@ import it.uniroma3.service.ExamService;
 	private ExamService examService;
 	
 	@Autowired
+	@Qualifier("examValidator")
 	private Validator validator;
 	
 	@InitBinder

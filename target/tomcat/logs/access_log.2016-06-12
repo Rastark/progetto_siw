@@ -1,0 +1,4 @@
+0:0:0:0:0:0:0:1 - - [12/Jun/2016:18:53:22 +0200] "GET / HTTP/1.1" 404 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [12/Jun/2016:18:53:35 +0200] "GET /progetto_siw_spring HTTP/1.1" 302 - http-bio-8080-exec-3 0
+0:0:0:0:0:0:0:1 - - [12/Jun/2016:18:53:37 +0200] "GET /progetto_siw_spring/ HTTP/1.1" 500 4192 http-bio-8080-exec-5 1626
+0:0:0:0:0:0:0:1 - - [12/Jun/2016:19:00:29 +0200] "GET /progetto_siw_spring/ HTTP/1.1" 200 288 http-bio-8080-exec-1 148
