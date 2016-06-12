@@ -9,18 +9,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="patients")
 public class Patient {
 	
+	/* Constructors */
+	public Patient() {}
+
+	/* Parameters */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
+	
+	@NotBlank
+	@Pattern(regexp="^[a-zA-Z]+(\\s?[a-zA-Z])*$", message="max 1 whitespace between words and only letters allowed")
 	@Column(nullable=false)
 	private String name;
 	
+	@NotBlank
+	@Pattern(regexp="^[a-zA-Z]+(\\s?[a-zA-Z])*$", message="max 1 whitespace between words and only letters allowed")
 	@Column(nullable=false)
 	private String surname;
 
@@ -32,8 +43,7 @@ public class Patient {
 		this.surname=surname;
 	}
 	
-	public Patient() {}
-
+	/* Getters and setters */
 	public String getName() {
 		return name;
 	}
@@ -62,6 +72,7 @@ public class Patient {
 		return id;
 	}
 	
+	/* Overrides */
 	@Override
 	public boolean equals(Object obj) {
 		Patient patient = (Patient) obj;
@@ -72,5 +83,9 @@ public class Patient {
 	public int hashCode() {
 		return this.getName().hashCode() + this.getSurname().hashCode();
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Patient [id=" + id + ", name=" + name + ", surname=" + surname + ", exams=" + exams + "]";
+	}	
 }

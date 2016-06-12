@@ -10,50 +10,52 @@ import javax.persistence.GenerationType;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @NamedQuery(name= "findAllExamTypology", query="SELECT t FROM ExamTypology t")
 @Table(name="examtypologies")
 public class ExamTypology {
-	
+
+	/* Constructors */
+	public ExamTypology() {}
+
+	/* Parameters */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
+
+	@NotBlank
+	@Pattern(regexp="^[a-zA-Z]+(\\s?[a-zA-Z])*$", message="max 1 whitespace between words and only letters allowed")
 	@Column(nullable=false)
 	private String name;
-	
+
 	@Column(nullable=false, unique=true)
 	private String code;
-	
+
 	@Column(length=2000)
 	private String description;
-	
+
+	@NotBlank
 	@Column(nullable=false)
 	private float cost;
-	
+
 	@OneToMany(mappedBy = "examTypology")
-    private List<Exam> exams;
+	private List<Exam> exams;
 
 	@ManyToMany(mappedBy="examTypologies")
 	private List<Prerequisite> prerequisites;
-	
+
 	@ManyToMany(mappedBy="examTypologies")
 	private List<ResultTypology> resultTypologies;
-	
-	public ExamTypology(String name, String code, String description, float cost) {
-		this.name = name;
-		this.code = code;
-		this.description = description;
-		this.cost = cost;
-	}
-	
-	public ExamTypology(){}
-	
+
+	/* Getters and Setters */
 	public long getId() {
 		return this.id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -79,15 +81,40 @@ public class ExamTypology {
 		this.cost = cost;
 	}
 	
+	public List<Exam> getExams() {
+		return exams;
+	}
+
+	public void setExams(List<Exam> exams) {
+		this.exams = exams;
+	}
+
+	public List<Prerequisite> getPrerequisites() {
+		return prerequisites;
+	}
+
+	public void setPrerequisites(List<Prerequisite> prerequisites) {
+		this.prerequisites = prerequisites;
+	}
+
+	public List<ResultTypology> getResultTypologies() {
+		return resultTypologies;
+	}
+
+	public void setResultTypologies(List<ResultTypology> resultTypologies) {
+		this.resultTypologies = resultTypologies;
+	}
+
+	/* Overrides */
 	public boolean equals(Object o) {
 		ExamTypology type = (ExamTypology)o;
 		return this.getCode().equals(type.getCode());
 	}
-	
+
 	public int hashCode() {
 		return this.code.hashCode();
 	}
-	
+
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("Exam Typology");

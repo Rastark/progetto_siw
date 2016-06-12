@@ -10,15 +10,25 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 
 @Entity
 @Table(name="resulttypologies")
 public class ResultTypology {
 
+	/* Constructors */
+	public ResultTypology() {}
+	
+	/* Parameters */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@NotBlank
+	@Pattern(regexp="^[a-zA-Z]+(\\s?[a-zA-Z])*$", message="max 1 whitespace between words and only letters allowed")
 	@Column(nullable=false)
 	private String name;
 	
@@ -28,12 +38,7 @@ public class ResultTypology {
 	@ManyToMany
 	private List<ExamTypology> examTypologies;
 	
-	public ResultTypology(String name) {
-		this.name=name;
-	}
-	
-	public ResultTypology() {}
-
+	/* Getters and setters */
 	public String getName() {
 		return name;
 	}
@@ -61,7 +66,8 @@ public class ResultTypology {
 	public Long getId() {
 		return id;
 	}
-
+	
+	/* Override */
 	@Override
 	public boolean equals(Object obj) {
 		return this.getName().equals(((ResultTypology)obj).getName());
@@ -70,5 +76,11 @@ public class ResultTypology {
 	@Override
 	public int hashCode() {
 		return this.getName().hashCode();
+	}
+
+	@Override
+	public String toString() {
+		return "ResultTypology [id=" + id + ", name=" + name + ", results=" + results + ", examTypologies="
+				+ examTypologies + "]";
 	}
 }

@@ -2,7 +2,6 @@ package it.uniroma3.model;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,20 +13,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Future;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="exams")
 public class Exam {
 
+	/* Parameters */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -49,6 +44,7 @@ public class Exam {
 
 	@ManyToOne
 	private ExamTypology examTypology;
+	
 	@ManyToOne
 	private Medic medic;
 	
@@ -58,6 +54,7 @@ public class Exam {
 	@OneToMany(mappedBy="exam")
 	private List<Result> results;
 	
+	/* Getters and setters */
 	public Long getId() {
 		return id;
 	}
@@ -125,7 +122,9 @@ public class Exam {
 	public void setResults(List<Result> results) {
 		this.results = results;
 	}
+
 	
+	/* Overrides */
 	@Override
 	public boolean equals(Object obj) {
 		return this.getCode().equals(((Exam)obj).getCode());
@@ -134,5 +133,12 @@ public class Exam {
 	@Override
 	public int hashCode() {
 		return this.getCode().hashCode();
+	}
+
+	@Override
+	public String toString() {
+		return "Exam [id=" + id + ", prenotationDate=" + prenotationDate + ", visitDate=" + visitDate + ", code=" + code
+				+ ", examTypology=" + examTypology + ", medic=" + medic + ", patient=" + patient + ", results="
+				+ results + "]";
 	}
 }
