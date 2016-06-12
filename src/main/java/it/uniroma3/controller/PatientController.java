@@ -1,5 +1,7 @@
 package it.uniroma3.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -30,7 +32,7 @@ public class PatientController {
 	
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
-		binder.setValidator(validator);
+		binder.setValidator(this.validator);
 	}
 	
 	@ModelAttribute("patient")
@@ -50,7 +52,7 @@ public class PatientController {
 	}
 	
 	@RequestMapping(value = "/updatepatient", method = RequestMethod.GET)
-	public String updatePatient(@ModelAttribute("patient") @Validated Patient patient, BindingResult bindingResult, Model model) {
+	public String updatePatient(@ModelAttribute("patient") @Valid Patient patient, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors())
 			return "addpatient";
 		this.patientService.insertPatient(patient);

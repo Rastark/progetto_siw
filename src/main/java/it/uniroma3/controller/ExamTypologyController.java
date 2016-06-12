@@ -1,6 +1,9 @@
 package it.uniroma3.controller;
 
 import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -51,7 +54,7 @@ public class ExamTypologyController extends WebMvcConfigurerAdapter{
 	}
 
 	@RequestMapping(value="/updateexamtypology", method = RequestMethod.GET)
-	public String updateExamTypology(@ModelAttribute("examTypology") @Validated ExamTypology examTypology, BindingResult bindingResult, Model model) {
+	public String updateExamTypology(@ModelAttribute("examTypology") @Valid ExamTypology examTypology, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) 
 			return "addexamtypology";
 		this.examTypologyService.insertExamTypology(examTypology);

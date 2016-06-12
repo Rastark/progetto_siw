@@ -1,5 +1,7 @@
 package it.uniroma3.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -27,13 +29,13 @@ import it.uniroma3.service.ExamService;
 	@Autowired
 	private ExamService examService;
 	
-//	@Autowired
-//	private Validator validator;
+	@Autowired
+	private Validator validator;
 	
-//	@InitBinder
-//	private void initBinder(WebDataBinder binder) {
-//		binder.setValidator(validator);
-//	}
+	@InitBinder
+	private void initBinder(WebDataBinder binder) {
+		binder.setValidator(validator);
+	}
 	
 	@ModelAttribute("exam")
 	public Exam createExamModel() {
@@ -52,7 +54,7 @@ import it.uniroma3.service.ExamService;
 	}
 	
 	@RequestMapping(value="/updateexam", method = RequestMethod.GET)
-	public String updateExam(@ModelAttribute("exam") @Validated Exam exam, BindingResult bindingResult, Model model) {
+	public String updateExam(@ModelAttribute("exam") @Valid Exam exam, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) 
 			return "addexam";
 		this.examService.insertExam(exam);
