@@ -3,6 +3,8 @@ package it.uniroma3.controller;
 import java.text.ParseException;
 import java.util.Date;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -58,7 +60,7 @@ public class ResultController extends WebMvcConfigurerAdapter{
 	}
 	
 	@RequestMapping(value="/updateresult", method = RequestMethod.GET)
-	public String updateResult(@ModelAttribute("result") @Validated Result result, BindingResult bindingResult, Model model) {
+	public String updateResult(@ModelAttribute("result") @Valid Result result, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) 
 			return "addresult";
 		this.resultService.insertResult(result);
