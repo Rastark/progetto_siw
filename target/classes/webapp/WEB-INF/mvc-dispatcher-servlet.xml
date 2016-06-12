@@ -1,6 +1,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:apo="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="
       http://www.springframework.org/schema/beans    
       http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
@@ -9,13 +10,17 @@
       http://www.springframework.org/schema/tx
 	  http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
 	  http://www.springframework.org/schema/aop
-	  http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+	  http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+	  http://www.springframework.org/schema/mvc
+	  http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 
 	<!-- <bean id="pum" -->
 	<!-- class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager"> -->
 	<!-- <property name="persistenceXmlLocation" value="classpath*:META-INF/persistence.xml" 
 		/> -->
 	<!-- </bean> -->
+
+	<mvc:annotation-driven />
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -58,13 +63,13 @@
 	<context:annotation-config />
 	<context:component-scan base-package="it.uniroma3" />
 
-<!-- 	<bean class="it.uniroma3.service.ExamServiceImpl"> -->
-<!-- 		<property name="examDao" ref="examDao" /> -->
-<!-- 	</bean> -->
+	<!-- <bean class="it.uniroma3.service.ExamServiceImpl"> -->
+	<!-- <property name="examDao" ref="examDao" /> -->
+	<!-- </bean> -->
 
-<!-- 	<bean class="it.uniroma3.controller.ExamController"> -->
-<!-- 		<property name="examService" ref="examService" /> -->
-<!-- 	</bean> -->
+	<!-- <bean class="it.uniroma3.controller.ExamController"> -->
+	<!-- <property name="examService" ref="examService" /> -->
+	<!-- </bean> -->
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
