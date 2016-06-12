@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Prerequisites")
+@Table(name="prerequisites")
 public class Prerequisite {
 	
 	@Id
@@ -24,7 +24,7 @@ public class Prerequisite {
 	@Column(nullable=false)
 	private String description;
 	
-	@ManyToMany(mappedBy="prerequisites")
+	@ManyToMany
 	private List<ExamTypology> examTypologies;
 
 	public Prerequisite(String name, String description) {

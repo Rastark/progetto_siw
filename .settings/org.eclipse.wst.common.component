@@ -6,6 +6,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources/META-INF"/>
         <property name="context-root" value="progetto_siw_spring"/>
         <property name="java-output-path" value="/progetto_siw_spring/target/classes"/>
     </wb-module>

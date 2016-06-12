@@ -1,23 +1,112 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:context="http://www.springframework.org/schema/context"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
       http://www.springframework.org/schema/beans    
       http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
       http://www.springframework.org/schema/context
-      http://www.springframework.org/schema/context/spring-context-4.2.xsd">
- 
-  <context:component-scan base-package="it.uniroma3.controller" />
-  <context:annotation-config />
- 
-  <bean
-    class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-    <property name="prefix">
-      <value>/WEB-INF/pages/</value>
-    </property>
-    <property name="suffix">
-      <value>.jsp</value>
-    </property>
-  </bean>
- 
+      http://www.springframework.org/schema/context/spring-context-4.2.xsd
+      http://www.springframework.org/schema/tx
+	  http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+	  http://www.springframework.org/schema/aop
+	  http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+
+	<!-- <bean id="pum" -->
+	<!-- class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager"> -->
+	<!-- <property name="persistenceXmlLocation" value="classpath*:META-INF/persistence.xml" 
+		/> -->
+	<!-- </bean> -->
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
+		<property name="persistenceUnitName" value="dawnstone" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+		<property name="jpaDialect" ref="jpaDialect" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="jpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<!-- <property name="database" value="PostgreSQL" /> -->
+		<property name="databasePlatform" value="org.hibernate.dialect.PostgreSQLDialect" />
+	</bean>
+
+	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaDialect" ref="jpaDialect" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://localhost/typologies" />
+		<property name="username" value="postgres" />
+		<property name="password" value="postgres" />
+	</bean>
+
+	<context:annotation-config />
+	<context:component-scan base-package="it.uniroma3" />
+
+<!-- 	<bean class="it.uniroma3.service.ExamServiceImpl"> -->
+<!-- 		<property name="examDao" ref="examDao" /> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean class="it.uniroma3.controller.ExamController"> -->
+<!-- 		<property name="examService" ref="examService" /> -->
+<!-- 	</bean> -->
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/pages/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- <bean id="sessionFactory" -->
+	<!-- class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"> -->
+	<!-- <property name="dataSource" ref="dataSource" /> -->
+	<!-- <property name="annotatedClasses"> -->
+	<!-- <list> -->
+	<!-- <value>it.uniroma3.</value> -->
+	<!-- </list> -->
+	<!-- </property> -->
+
+	<!-- <property name="hibernateProperties"> -->
+	<!-- <props> -->
+	<!-- <prop key="hibernate.dialect">${hibernate.dialect}</prop> -->
+	<!-- <prop key="hibernate.show_sql">${hibernate.show_sql}</prop> -->
+	<!-- </props> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="hibernateTransactionManager" -->
+	<!-- class="org.springframework.orm.hibernate3.HibernateTransactionManager"> -->
+	<!-- <property name="sessionFactory" ref="sessionFactory" /> -->
+	<!-- </bean> -->
+
+	<!-- <tx:annotation-driven transaction-manager="hibernateTransactionManager" 
+		/> -->
+
 </beans>

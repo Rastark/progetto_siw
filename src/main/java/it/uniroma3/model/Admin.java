@@ -9,7 +9,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Admin")
+@Table(name="admin")
 @NamedQuery(name = "findAllAdmins", query = "SELECT a from Admin a")
 public class Admin {
 	

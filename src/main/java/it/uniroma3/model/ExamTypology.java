@@ -9,9 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @NamedQuery(name= "findAllExamTypology", query="SELECT t FROM ExamTypology t")
+@Table(name="examtypologies")
 public class ExamTypology {
 	
 	@Id
@@ -33,7 +35,7 @@ public class ExamTypology {
 	@OneToMany(mappedBy = "examTypology")
     private List<Exam> exams;
 
-	@ManyToMany
+	@ManyToMany(mappedBy="examTypologies")
 	private List<Prerequisite> prerequisites;
 	
 	@ManyToMany(mappedBy="examTypologies")
