@@ -13,6 +13,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="exams")
@@ -25,15 +35,20 @@ public class Exam {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date prenotationDate;
 	
+	@NotNull
+	@Future
+	@Pattern(regexp="^[0-9]{2}[-][0-9]{2}[-][0-9]{4}$", message="the date must respect the following format: gg-mm-aaaa")
+	@DateTimeFormat(pattern="dd-MM-yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date visitDate;
 	
+	@NotBlank
+	@Pattern(regexp="^[a-zA-Z0-9]{10}$", message="the code must be an alphanumeric string of 10 chars")
 	@Column(nullable=false, unique=true)
 	private String code;
 
 	@ManyToOne
 	private ExamTypology examTypology;
-	
 	@ManyToOne
 	private Medic medic;
 	
@@ -42,15 +57,6 @@ public class Exam {
 	
 	@OneToMany(mappedBy="exam")
 	private List<Result> results;
-	
-	public Exam(ExamTypology et, Date prenotationDate, Date visitDate, String code) {
-		this.examTypology = et;
-		this.prenotationDate = prenotationDate;
-		this.visitDate = visitDate;
-		this.code = code;
-	}
-	
-	public Exam(){}
 	
 	public Long getId() {
 		return id;

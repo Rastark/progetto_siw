@@ -18,7 +18,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import it.uniroma3.model.Exam;
 import it.uniroma3.service.ExamService;
-import it.uniroma3.validator.ExamValidator;
+//import it.uniroma3.validator.ExamValidator;
 
 @Controller
 @RequestMapping("/exam")
@@ -27,13 +27,13 @@ import it.uniroma3.validator.ExamValidator;
 	@Autowired
 	private ExamService examService;
 	
-	@Autowired
-	private Validator validator;
+//	@Autowired
+//	private Validator validator;
 	
-	@InitBinder
-	private void initBinder(WebDataBinder binder) {
-		binder.setValidator(validator);
-	}
+//	@InitBinder
+//	private void initBinder(WebDataBinder binder) {
+//		binder.setValidator(validator);
+//	}
 	
 	@ModelAttribute("exam")
 	public Exam createExamModel() {
