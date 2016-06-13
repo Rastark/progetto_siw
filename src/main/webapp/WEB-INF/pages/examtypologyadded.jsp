@@ -15,7 +15,7 @@
 		<tr>
 			<td colspan="7"
 				style="background-color: lightblue; color: darkgreen; font-size: 16pt"
-				align="center">Employee List</td>
+				align="center">Exam Typologies List</td>
 		</tr>
 		<tr bgcolor="grey" style="color: white">
 			<th>Id</th>
@@ -35,7 +35,7 @@
 				<td>${examTypology.cost}</td>
 				<td>${examTypology.description}</td>
 				<td><a
-					href="delete/${examTypology.id}">Delete</a></td>
+					href="${contextPath}/delete/${examTypology.id}">Delete</a></td>
 			</tr>
 		</c:forEach>
 	</table>

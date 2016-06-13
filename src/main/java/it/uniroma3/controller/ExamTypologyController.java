@@ -71,12 +71,17 @@ public class ExamTypologyController {
 		model.addAttribute("examTypologiesList", examTypologyService.listExamTypology());
 		return "examtypologyadded";
 	}
+	
+	@RequestMapping(value = "/updateexamtypology", method = RequestMethod.GET)
+	public String updateNoGet() {
+		return "addexamtypology";
+	}
 
 	@RequestMapping(value="/delete/{etId}", method = RequestMethod.GET)
 	public String deleteExamTypology(@PathVariable("etId") Long etId, Model model) {
 		this.examTypologyService.deleteExamTypology(etId);
 		model.addAttribute("examTypologiesList", examTypologyService.listExamTypology());
-		return "examTypology";
+		return "examtypologyadded";
 	}
 
 
