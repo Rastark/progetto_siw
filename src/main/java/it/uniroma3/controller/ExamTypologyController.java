@@ -26,32 +26,32 @@ public class ExamTypologyController {
 	@Autowired
 	private ExamTypologyService examTypologyService;
 
-//	@Autowired
-//	@Qualifier("examTypologyValidator")
-//	private Validator validator;
-//
-//	@InitBinder
-//	private void initBinder(WebDataBinder binder) {
-//		binder.setValidator(validator);
-//	}
-	
-//	@ModelAttribute("examTypology")
-//	public ExamTypology createExamTypologyModel() {
-//		return new ExamTypology();
-//	}
-	
-//	@RequestMapping(value = "/", method = RequestMethod.GET)
-//	public String welcomeHandler(Model model) {
-//		model.addAttribute("examTypology", new ExamTypology());
-//		return "index";
-//	}
-//	
+	//	@Autowired
+	//	@Qualifier("examTypologyValidator")
+	//	private Validator validator;
+	//
+	//	@InitBinder
+	//	private void initBinder(WebDataBinder binder) {
+	//		binder.setValidator(validator);
+	//	}
+
+	//	@ModelAttribute("examTypology")
+	//	public ExamTypology createExamTypologyModel() {
+	//		return new ExamTypology();
+	//	}
+
+	//	@RequestMapping(value = "/", method = RequestMethod.GET)
+	//	public String welcomeHandler(Model model) {
+	//		model.addAttribute("examTypology", new ExamTypology());
+	//		return "index";
+	//	}
+	//	
 	@RequestMapping(value="/listexamtypology", method = RequestMethod.GET)
 	public String listExamTypology(Model model) {
 		model.addAttribute("examTypologiesList", examTypologyService.listExamTypology());
 		return "examTypology";
 	}	
-	
+
 	@RequestMapping(value = "/addexamtypology", method = RequestMethod.GET)
 	public String addExamTypology(Model model) {
 		model.addAttribute("examTypology", new ExamTypology());
@@ -59,11 +59,16 @@ public class ExamTypologyController {
 	}
 
 	@RequestMapping(value = "/updateexamtypology", method = RequestMethod.POST)
-	public String updateExamTypology(@Valid @ModelAttribute("examTypology") ExamTypology examTypology, BindingResult bindingResult) {
+	public String updateExamTypology(@Valid @ModelAttribute("examTypology") ExamTypology examTypology, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) 
 			return "addexamtypology";
-//		this.examTypologyService.insertExamTypology(examTypology);
-//		model.addAttribute("examTypology", new ExamTypology());
+		try {
+			this.examTypologyService.insertExamTypology(examTypology);
+		}
+		catch(Exception e) {
+			return "addexamtypology";
+		}	
+		model.addAttribute("examTypologiesList", examTypologyService.listExamTypology());
 		return "examtypologyadded";
 	}
 
@@ -73,6 +78,6 @@ public class ExamTypologyController {
 		model.addAttribute("examTypologiesList", examTypologyService.listExamTypology());
 		return "examTypology";
 	}
-	
-	
+
+
 }

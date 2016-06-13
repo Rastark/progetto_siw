@@ -39,7 +39,8 @@ public class ExamTypology {
 	private String description;
 
 	@NotBlank
-	private float cost;
+	@Pattern(regexp="[0-9]", message="must be a number")
+	private String cost;
 
 	@OneToMany(mappedBy = "examTypology")
 	private List<Exam> exams;
@@ -73,10 +74,10 @@ public class ExamTypology {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public float getCost() {
+	public String getCost() {
 		return cost;
 	}
-	public void setCost(float cost) {
+	public void setCost(String cost) {
 		this.cost = cost;
 	}
 	

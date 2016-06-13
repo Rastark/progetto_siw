@@ -10,7 +10,7 @@
 <body>
 	<h1>Creazione nuova tipologia d'esame</h1>
 	<div>Inserimento dati:</div>
-	<c:url var="actionURL" value="/addexamtypology" /> 
+	<c:url var="actionURL" value="/updateexamtypology" /> 
 	<form:form method="POST" modelAttribute="examTypology" action="${actionURL}">
 
 			<div>
