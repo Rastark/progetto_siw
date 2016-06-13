@@ -22,17 +22,32 @@
 			<id>codelds</id>
 			<url>https://code.lds.org/nexus/content/groups/main-repo</url>
 		</repository>
+
+		<repository>
+			<id>io.spring.repo.maven.release</id>
+			<url>http://repo.spring.io/release/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 
 	<dependencies>
 
 		<!-- Spring framework START -->
-		<!-- http://mvnrepository.com/artifact/org.springframework/spring-core -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
+			<artifactId>spring-context</artifactId>
 			<version>4.2.6.RELEASE</version>
+			<scope>runtime</scope>
 		</dependency>
+
+		<!-- http://mvnrepository.com/artifact/org.springframework/spring-core -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring-core</artifactId> -->
+		<!-- <version>4.2.6.RELEASE</version> -->
+		<!-- </dependency> -->
 
 		<!-- http://mvnrepository.com/artifact/org.springframework/spring-web -->
 		<dependency>
@@ -47,8 +62,6 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>4.2.6.RELEASE</version>
 		</dependency>
-
-
 
 		<!-- http://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
 		<dependency>
@@ -102,12 +115,12 @@
 
 		<!-- JSP API -->
 		<!-- http://mvnrepository.com/artifact/javax.servlet.jsp/jsp-api -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>javax.servlet.jsp</groupId> -->
-<!-- 			<artifactId>jsp-api</artifactId> -->
-<!-- 			<version>2.2</version> -->
-<!-- 			<scope>provided</scope> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>javax.servlet.jsp</groupId> -->
+		<!-- <artifactId>jsp-api</artifactId> -->
+		<!-- <version>2.2</version> -->
+		<!-- <scope>provided</scope> -->
+		<!-- </dependency> -->
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -183,7 +196,20 @@
 			<version>9.4.1208</version>
 		</dependency>
 
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>3.2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>4.2.6.RELEASE</version>
+		</dependency>
 	</dependencies>
+
+	<!-- http://mvnrepository.com/artifact/cglib/cglib -->
 
 	<build>
 		<finalName>progetto_siw_spring</finalName>

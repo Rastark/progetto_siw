@@ -1,6 +1,6 @@
 package it.uniroma3.controller;
 
-import java.util.List;
+
 
 import javax.validation.Valid;
 
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,48 +21,54 @@ import it.uniroma3.model.ExamTypology;
 import it.uniroma3.service.ExamTypologyService;
 
 @Controller
-@RequestMapping("/examTypology")
-public class ExamTypologyController extends WebMvcConfigurerAdapter{
+public class ExamTypologyController {
 
 	@Autowired
 	private ExamTypologyService examTypologyService;
 
-	@Autowired
-	@Qualifier("examTypologyValidator")
-	private Validator validator;
-
-	@InitBinder
-	private void initBinder(WebDataBinder binder) {
-		binder.setValidator(validator);
-	}
+//	@Autowired
+//	@Qualifier("examTypologyValidator")
+//	private Validator validator;
+//
+//	@InitBinder
+//	private void initBinder(WebDataBinder binder) {
+//		binder.setValidator(validator);
+//	}
 	
-	@ModelAttribute("examTypology")
-	public ExamTypology createExamTypologyModel() {
-		return new ExamTypology();
-	}
+//	@ModelAttribute("examTypology")
+//	public ExamTypology createExamTypologyModel() {
+//		return new ExamTypology();
+//	}
 	
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String welcomeHandler(Model model) {
+//		model.addAttribute("examTypology", new ExamTypology());
+//		return "index";
+//	}
+//	
 	@RequestMapping(value="/listexamtypology", method = RequestMethod.GET)
 	public String listExamTypology(Model model) {
 		model.addAttribute("examTypologiesList", examTypologyService.listExamTypology());
 		return "examTypology";
 	}	
 	
-	@RequestMapping(value = "/addexamtypology", method = RequestMethod.POST)
+	@RequestMapping(value = "/addexamtypology", method = RequestMethod.GET)
 	public String addExamTypology(Model model) {
-		return "/addexamtypology";
+		model.addAttribute("examTypology", new ExamTypology());
+		return "addexamtypology";
 	}
 
-	@RequestMapping(value="/updateexamtypology", method = RequestMethod.GET)
-	public String updateExamTypology(@ModelAttribute("examTypology") @Valid ExamTypology examTypology, BindingResult bindingResult, Model model) {
+	@RequestMapping(value = "/updateexamtypology", method = RequestMethod.POST)
+	public String updateExamTypology(@Valid @ModelAttribute("examTypology") ExamTypology examTypology, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) 
 			return "addexamtypology";
-		this.examTypologyService.insertExamTypology(examTypology);
-		model.addAttribute("examTypologiesList", examTypologyService.listExamTypology());
-		return "examTypology";
+//		this.examTypologyService.insertExamTypology(examTypology);
+//		model.addAttribute("examTypology", new ExamTypology());
+		return "examtypologyadded";
 	}
 
 	@RequestMapping(value="/delete/{etId}", method = RequestMethod.GET)
-	public String deleteExamTypology(@PathVariable("etid") Long etId, Model model) {
+	public String deleteExamTypology(@PathVariable("etId") Long etId, Model model) {
 		this.examTypologyService.deleteExamTypology(etId);
 		model.addAttribute("examTypologiesList", examTypologyService.listExamTypology());
 		return "examTypology";

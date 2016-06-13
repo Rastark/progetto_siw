@@ -49,12 +49,12 @@ import it.uniroma3.service.ExamService;
 		return "exam";
 	}
 	
-	@RequestMapping(value="/addexam", method = RequestMethod.POST)
+	@RequestMapping(value="/addexam", method = RequestMethod.GET)
 	public String addExam(Model model) {
 		return "/addexam";
 	}
 	
-	@RequestMapping(value="/updateexam", method = RequestMethod.GET)
+	@RequestMapping(value="/updateexam", method = RequestMethod.POST)
 	public String updateExam(@ModelAttribute("exam") @Valid Exam exam, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) 
 			return "addexam";

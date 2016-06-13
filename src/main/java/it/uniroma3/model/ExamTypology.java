@@ -29,17 +29,16 @@ public class ExamTypology {
 
 	@NotBlank
 	@Pattern(regexp="^[a-zA-Z]+(\\s?[a-zA-Z])*$", message="max 1 whitespace between words and only letters allowed")
-	@Column(nullable=false)
 	private String name;
 
-	@Column(nullable=false, unique=true)
+	@NotBlank
+	@Column(unique=true)
 	private String code;
 
 	@Column(length=2000)
 	private String description;
 
 	@NotBlank
-	@Column(nullable=false)
 	private float cost;
 
 	@OneToMany(mappedBy = "examTypology")
