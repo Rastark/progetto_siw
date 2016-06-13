@@ -84,3 +84,10 @@
 0:0:0:0:0:0:0:1 - - [13/Jun/2016:15:34:03 +0200] "GET /progetto_siw_spring/addexamtypology.jsp HTTP/1.1" 404 1029 http-bio-8080-exec-4 2
 0:0:0:0:0:0:0:1 - - [13/Jun/2016:15:34:46 +0200] "GET /progetto_siw_spring/ HTTP/1.1" 200 284 http-bio-8080-exec-5 174
 0:0:0:0:0:0:0:1 - - [13/Jun/2016:15:34:48 +0200] "GET /progetto_siw_spring/addexamtypology HTTP/1.1" 200 1136 http-bio-8080-exec-8 1183
+0:0:0:0:0:0:0:1 - - [13/Jun/2016:15:51:46 +0200] "GET /progetto_siw_spring/addexamtypology HTTP/1.1" 200 1136 http-bio-8080-exec-1 28
+0:0:0:0:0:0:0:1 - - [13/Jun/2016:15:52:32 +0200] "POST /progetto_siw_spring/addexamtypology HTTP/1.1" 405 1047 http-bio-8080-exec-1 8
+0:0:0:0:0:0:0:1 - - [13/Jun/2016:15:53:09 +0200] "POST /progetto_siw_spring/addexamtypology HTTP/1.1" 405 1047 http-bio-8080-exec-1 6
+0:0:0:0:0:0:0:1 - - [13/Jun/2016:15:53:12 +0200] "POST /progetto_siw_spring/addexamtypology HTTP/1.1" 405 1047 http-bio-8080-exec-1 8
+0:0:0:0:0:0:0:1 - - [13/Jun/2016:15:53:16 +0200] "GET /progetto_siw_spring/addexamtypology HTTP/1.1" 200 1135 http-bio-8080-exec-1 505
+0:0:0:0:0:0:0:1 - - [13/Jun/2016:15:53:27 +0200] "GET /progetto_siw_spring/addexamtypology?name=Cardiologico&code=CARD%2F01&description=esame+cardiologico&cost=12.50 HTTP/1.1" 200 1135 http-bio-8080-exec-1 10
+0:0:0:0:0:0:0:1 - - [13/Jun/2016:15:54:09 +0200] "GET /progetto_siw_spring/addexamtypology?name=667&code=&description=&cost=0.0 HTTP/1.1" 200 1135 http-bio-8080-exec-1 9
