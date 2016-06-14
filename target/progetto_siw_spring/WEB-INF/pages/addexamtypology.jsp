@@ -41,9 +41,7 @@
 
 	<div>Naviga nel sito:</div>
 	<div>
-		<a href="addexamtypology.jsp">crea nuova tipologia d'esame</a>
-		<p>Ciao!</p>
+		<a href="addexamtypology">crea nuova tipologia d'esame</a>
 	</div>
-
 </body>
 </html>

@@ -59,14 +59,6 @@ public class Exam {
 		return id;
 	}
 
-	public ExamTypology getEt() {
-		return examTypology;
-	}
-
-	public void setEt(ExamTypology et) {
-		this.examTypology = et;
-	}
-
 	public Date getPrenotationDate() {
 		return prenotationDate;
 	}

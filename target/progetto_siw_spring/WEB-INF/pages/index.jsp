@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Home</title>
+<link href="bootstrap.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<div>

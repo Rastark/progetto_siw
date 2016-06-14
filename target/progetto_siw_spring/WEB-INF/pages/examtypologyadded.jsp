@@ -7,18 +7,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <head>
 <title>Exam typology persisted</title>
+<c:url var="css1" value="/resources/clinic.css"/>
+<c:url var="css2" value="/resources/bootstrap.css"/>
+<link href="${css1}" rel="stylesheet" type="text/css" />
+<link href="${css2}" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	Hai inserito la tipologia d'esame: ${examTypology.name}
 	<br /> Lista delle tipologie d'esame:
-	<table cellspacing="0" cellpadding="6" border="1" width="100%">
+	<table class="table-striped clinic">
 		<tr>
-			<td colspan="7"
-				style="background-color: lightblue; color: darkgreen; font-size: 16pt"
-				align="center">Employee List</td>
+			<td colspan="6" class="clinic-first" align="center">Exam Typologies List</td>
 		</tr>
-		<tr bgcolor="grey" style="color: white">
-			<th>Id</th>
+		<tr>
+			<th>No</th>
 			<th>Name</th>
 			<th>Code</th>
 			<th>Cost</th>
@@ -28,16 +30,19 @@
 
 		<c:forEach var="examTypology" items="${examTypologiesList}"
 			varStatus="status">
-			<tr bgcolor="lightyellow">
+			<tr>
 				<td><b>${status.index + 1}</b></td>
 				<td>${examTypology.name}</td>
 				<td>${examTypology.code}</td>
 				<td>${examTypology.cost}</td>
 				<td>${examTypology.description}</td>
-				<td><a
-					href="delete/${examTypology.id}">Delete</a></td>
+				<td><a href="delete/${examTypology.id}">Delete</a></td>
 			</tr>
 		</c:forEach>
 	</table>
+	<div class="footer">
+		Navigate: <a href="index">Index</a> <br /> <a href="addexamtypology">Add
+			another exam typology</a>
+	</div>
 </body>
 </html>

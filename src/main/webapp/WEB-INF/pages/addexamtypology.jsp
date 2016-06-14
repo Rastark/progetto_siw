@@ -6,10 +6,11 @@
 <html>
 <head>
 <title>Pagina creazione nuova tipologia d'esame</title>
+<c:set var="cp" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
-	<h1>Creazione nuova tipologia d'esame</h1>
-	<div>Inserimento dati:</div>
+	<h1>New exam typology creation page</h1>
+	<div>Date form:</div>
 	<c:url var="actionURL" value="/updateexamtypology" /> 
 	<form:form method="POST" modelAttribute="examTypology" action="${actionURL}">
 
@@ -33,17 +34,25 @@
 				<br />
 				<form:input path="cost" />
 				<form:errors path="cost" />
-				<input type="submit" value="invia" />
 				<br />
+				<form:label path="prerequisites">Prerequisites:</form:label>
+				<br />
+				<form:checkboxes items="prerequisitesList}" path="prerequisites" />
+				<form:errors path="prerequisites" />
+				<input type="submit" value="invia" />
+				<br /><br />
+				<form:label path="resultTypologies">Result Typologies:</form:label>
+				<br />
+				<form:checkboxes items="resultTypologiesList}" path="resultTypologies" />
+				<form:errors path="resultTypologies" />
+				<br />
+				<input type="submit" value="invia" />
 			</div>
-<!-- <input type="text" name="name"  -->
 	</form:form>
 
 	<div>Naviga nel sito:</div>
 	<div>
-		<a href="addexamtypology.jsp">crea nuova tipologia d'esame</a>
-		<p>Ciao!</p>
+		<a href="addexamtypology">crea nuova tipologia d'esame</a>
 	</div>
-
 </body>
 </html>

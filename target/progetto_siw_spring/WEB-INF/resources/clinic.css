@@ -1,0 +1,16 @@
+table.clinic td.clinic-first {
+	bgcolor: lightgreen;
+	color: darkgreen;
+	font-size: 16pt;
+	text-align: center;
+}
+
+table.clinic th {
+	bgcolor: darkgreen;
+	color: white;
+}
+
+table.clinic tr {
+	bgcolor: lightgrey;
+	color: black;
+}
