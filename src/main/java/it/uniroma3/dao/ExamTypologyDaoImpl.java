@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import it.uniroma3.model.ExamTypology;
 
 @Repository
-@Transactional(propagation = Propagation.REQUIRED)
 public class ExamTypologyDaoImpl implements ExamTypologyDao {
 
 //	@Autowired
@@ -48,6 +47,7 @@ public class ExamTypologyDaoImpl implements ExamTypologyDao {
 	 * @see it.uniroma3.dao.ExamTypologyDao#insertExamTypology(it.uniroma3.model.ExamTypology)
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void insertExamTypology(ExamTypology examTypology) {
 		em.persist(examTypology);
 	}
@@ -56,6 +56,7 @@ public class ExamTypologyDaoImpl implements ExamTypologyDao {
 	 * @see it.uniroma3.dao.ExamTypologyDao#deleteExamTypology(java.lang.Long)
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deleteExamTypology(Long id) {
 		ExamTypology examTypology = em.find(ExamTypology.class, id);
 		em.remove(examTypology);

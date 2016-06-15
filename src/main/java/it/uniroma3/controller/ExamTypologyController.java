@@ -82,18 +82,7 @@ public class ExamTypologyController {
 
 	@RequestMapping(value = "/addexamtypology", method = RequestMethod.GET)
 	public String addExamTypology(Model model) {
-//		List<Prerequisite> listPrerequisite = new ArrayList<Prerequisite>(this.prerequisiteService.listPrerequisite());
-//		List<ResultTypology> listResultTypology = new ArrayList<ResultTypology>(this.resultTypologyService.listResultTypology());
-		//		Map prerequisiteMap = new HashMap();
-//		prerequisiteMap.put("prerequisiteMap", listPrerequisite);
-//		List<ResultTypology> listResultTypology = new ArrayList<ResultTypology>(this.resultTypologyService.listResultTypology());
-//		Map resultTypologyMap = new HashMap();
-//		resultTypologyMap.put("resultTypologyMap", listResultTypology);
-//		List<Exam> listExam = new ArrayList<Exam>(this.examService.listExam());
 		model.addAttribute("examTypology", new ExamTypology());
-//		model.addAttribute("prerequisitesMap", prerequisiteMap);
-//		model.addAttribute("resultTypologiesMap", prerequisiteMap);
-//		model.addAttribute("examsList", listExam);
 		model.addAttribute("prerequisitesList", prerequisiteService.listPrerequisite());
 		model.addAttribute("resultTypologiesList", resultTypologyService.listResultTypology());
 		return "addexamtypology";

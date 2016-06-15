@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import it.uniroma3.model.Exam;
 
 @Repository
-@Transactional(propagation = Propagation.REQUIRED)
 public class ExamDaoImpl implements ExamDao {
 
 //	@Autowired
@@ -48,6 +47,7 @@ public class ExamDaoImpl implements ExamDao {
 	 * @see it.uniroma3.dao.ExamDai#insertExam(it.uniroma3.model.Exam)
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void insertExam(Exam exam) {
 		em.persist(exam);
 	}
@@ -56,6 +56,7 @@ public class ExamDaoImpl implements ExamDao {
 	 * @see it.uniroma3.dao.ExamDai#deleteExam(java.lang.Long)
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deleteExam(Long id) {
 		Exam exam = em.find(Exam.class, id);
 		em.remove(exam);
@@ -63,7 +64,8 @@ public class ExamDaoImpl implements ExamDao {
 
 	@Override
 	public List<Exam> getPatientExams(Long id) {
-		List<Exam> listPatientExams = em.createQuery("SELECT e FROM Exam e WHERE e.id = :id").setParameter("id", id).getResultList();
+		List<Exam> listPatientExams = new ArrayList<Exam>(); 
+			listPatientExams.addAll(em.createQuery("SELECT e FROM Exam e WHERE e.id = :id", Exam.class).setParameter("id", id).getResultList());
 		return listPatientExams;
 	}
 

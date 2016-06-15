@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import it.uniroma3.model.Medic;
 
 @Repository
-@Transactional(propagation = Propagation.REQUIRED)
 public class MedicDaoImpl implements MedicDao {
 
 //	@Autowired
@@ -33,6 +32,7 @@ public class MedicDaoImpl implements MedicDao {
 	 * @see it.uniroma3.dao.MedicDao#insertMedic(it.uniroma3.model.Medic)
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void insertMedic(Medic medic) {
 		em.persist(medic);
 	}
@@ -41,6 +41,7 @@ public class MedicDaoImpl implements MedicDao {
 	 * @see it.uniroma3.dao.MedicDao#deleteMedic(java.lang.Long)
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deleteMedic(Long id) {
 		Medic medic = em.find(Medic.class, id);
 		em.remove(medic);

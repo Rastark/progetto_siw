@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import it.uniroma3.model.ResultTypology;
 
 @Repository
-@Transactional(propagation = Propagation.REQUIRED)
 public class ResultTypologyDaoImpl implements ResultTypologyDao {
 	
 //	@Autowired
@@ -42,6 +41,7 @@ public class ResultTypologyDaoImpl implements ResultTypologyDao {
 	 * @see it.uniroma3.dao.ResultTypologyDao#insertResultTypology(it.uniroma3.model.ResultTypology)
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void insertResultTypology(ResultTypology resultTypology) {
 		em.persist(resultTypology);
 	}
@@ -50,6 +50,7 @@ public class ResultTypologyDaoImpl implements ResultTypologyDao {
 	 * @see it.uniroma3.dao.ResultTypologyDao#deleteResultTypology(java.lang.Long)
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deleteResultTypology(Long id) {
 		ResultTypology resultTypology = em.find(ResultTypology.class, id);
 		em.remove(resultTypology);

@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import it.uniroma3.model.Prerequisite;
 
 @Repository
-@Transactional(propagation = Propagation.REQUIRED)
 public class PrerequisiteDaoImpl implements PrerequisiteDao {
 
 //	@Autowired
@@ -35,7 +34,7 @@ public class PrerequisiteDaoImpl implements PrerequisiteDao {
 	/* (non-Javadoc)
 	 * @see it.uniroma3.dao.PrerequisiteDao#getAllPrerequisites()
 	 */
-	@Override
+	@Override 
 	public List<Prerequisite> getAllPrerequisites() {
 		CriteriaQuery<Prerequisite> cq = em.getCriteriaBuilder().createQuery(Prerequisite.class);
 		cq.select(cq.from(Prerequisite.class));
@@ -48,6 +47,7 @@ public class PrerequisiteDaoImpl implements PrerequisiteDao {
 	/* (non-Javadoc)
 	 * @see it.uniroma3.dao.PrerequisiteDao#insertPrerequisite(it.uniroma3.model.Prerequisite)
 	 */
+	@Transactional(propagation = Propagation.REQUIRED)
 	@Override 
 	public void insertPrerequisite(Prerequisite prerequisite) {
 		em.persist(prerequisite);
@@ -57,6 +57,7 @@ public class PrerequisiteDaoImpl implements PrerequisiteDao {
 	 * @see it.uniroma3.dao.PrerequisiteDao#deletePrerequisite(java.lang.Long)
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deletePrerequisite(Long id) {
 		Prerequisite prerequisite = em.find(Prerequisite.class, id);
 		em.remove(prerequisite);

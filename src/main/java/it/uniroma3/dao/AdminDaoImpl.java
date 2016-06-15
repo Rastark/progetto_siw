@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import it.uniroma3.model.Admin;
 
 @Repository
-@Transactional(propagation = Propagation.REQUIRED)
 public class AdminDaoImpl implements AdminDao {
 	
 //	@Autowired
@@ -41,6 +40,7 @@ public class AdminDaoImpl implements AdminDao {
 	/* (non-Javadoc)
 	 * @see it.uniroma3.dao.AdminDao#insertAdmin(it.uniroma3.model.Admin)
 	 */
+	@Transactional(propagation = Propagation.REQUIRED)
 	@Override
 	public void insertAdmin(Admin admin) {
 		em.persist(admin);
@@ -50,6 +50,7 @@ public class AdminDaoImpl implements AdminDao {
 	 * @see it.uniroma3.dao.AdminDao#deleteAdmin(java.lang.Long)
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deleteAdmin(Long id) {
 		Admin admin = em.find(Admin.class, id);
 		em.remove(admin);

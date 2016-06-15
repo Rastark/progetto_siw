@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import it.uniroma3.model.Patient;
 
 @Repository
-@Transactional(propagation = Propagation.REQUIRED)
 public class PatientDaoImpl implements PatientDao {
 
 //	@Autowired
@@ -42,6 +41,7 @@ public class PatientDaoImpl implements PatientDao {
 	 * @see it.uniroma3.dao.PatientDao#insertPatient(it.uniroma3.model.Patient)
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void insertPatient(Patient patient) {
 		em.persist(patient);
 	}
@@ -50,6 +50,7 @@ public class PatientDaoImpl implements PatientDao {
 	 * @see it.uniroma3.dao.PatientDao#deletePatient(java.lang.Long)
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deletePatient(Long id) {
 		Patient patient = em.find(Patient.class, id);
 		em.remove(patient);

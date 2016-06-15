@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import it.uniroma3.model.Result;
 
 @Repository
-@Transactional(propagation = Propagation.REQUIRED)
 public class ResultDaoImpl implements ResultDao {
 
 //	@Autowired
@@ -43,6 +42,7 @@ public class ResultDaoImpl implements ResultDao {
 	 * @see it.uniroma3.dao.ResultDao#insertResult(it.uniroma3.model.Result)
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void insertResult(Result result) {
 		em.persist(result);
 	}
@@ -51,6 +51,7 @@ public class ResultDaoImpl implements ResultDao {
 	 * @see it.uniroma3.dao.ResultDao#deleteResult(java.lang.Long)
 	 */
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void deleteResult(Long id) {
 		Result result = em.find(Result.class, id);
 		em.remove(result);

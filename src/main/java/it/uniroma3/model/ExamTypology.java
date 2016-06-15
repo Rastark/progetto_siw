@@ -58,8 +58,8 @@ public class ExamTypology {
 	@ManyToMany
 	@JoinTable(
 		      name="prerequisite_examtypology",
-		      joinColumns=@JoinColumn(name="prerequisite_id", referencedColumnName="id"),
-		      inverseJoinColumns=@JoinColumn(name="examtypology_id", referencedColumnName="id"))
+		      joinColumns=@JoinColumn (name="prerequisite_id"),
+		      inverseJoinColumns=@JoinColumn(name="examtypology_id"))
 	private Collection<Prerequisite> prerequisites = new HashSet<Prerequisite>();
 
 	@ManyToMany(mappedBy="examTypologies")
