@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.dao.ResultDao;
 import it.uniroma3.model.Result;
@@ -34,6 +35,7 @@ public class ResultServiceImpl implements ResultService {
 	 * @see it.uniroma3.service.ResultService#insertResult(it.uniroma3.model.Result)
 	 */
 	@Override
+	@Transactional
 	public void insertResult(Result result) {
 		this.resultDao.insertResult(result);
 	}
@@ -42,6 +44,7 @@ public class ResultServiceImpl implements ResultService {
 	 * @see it.uniroma3.service.ResultService#deleteResult(java.lang.Long)
 	 */
 	@Override
+	@Transactional
 	public void deleteResult(Long id) {
 		this.resultDao.deleteResult(id);
 	}

@@ -9,7 +9,8 @@
 	<intercept-url pattern="/resources/**" access="permitAll" />
 	<intercept-url pattern="/login" access="permitAll" />
 	<intercept-url pattern="/" access="permitAll" />
-	<intercept-url pattern="/addexamtypology" access="hasRole('admin')" />
+	<intercept-url pattern="/addexamtypology" access="permitAll" />
+<!-- 	risistemare -->
 	
 <!-- 		<intercept-url pattern="/**" access="hasRole('USER')" /> -->
 

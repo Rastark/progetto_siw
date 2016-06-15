@@ -14,7 +14,7 @@
 <link href="${css2}" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<form action="${loginUrl}" method="post">
+	<form action="${loginUrl}" method="POST">
 		<c:if test="${param.error != null}">
 			<p>Invalid username and password.</p>
 		</c:if>

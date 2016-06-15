@@ -9,34 +9,81 @@
 <title>Exam typology list</title>
 <c:url var="css1" value="/clinic.css" />
 <c:url var="css2" value="/resources/bootstrap.css" />
+<c:url var="css3" value="/resources/page.css" />
+<c:url var="js1" value="/resources/bootstrap.js" />
 <c:set var="cp" value="${pageContext.request.contextPath}" />
 <link href="${css1}" rel="stylesheet" type="text/css" />
 <link href="${css2}" rel="stylesheet" type="text/css" />
+<link href="${css3}" rel="stylesheet" type="text/css" />
+<script src="${js1}" type="text/javascript"></script>
+
 </head>
 <body>
-	<table class="table-striped clinic">
-		<tr>
-			<td colspan="4" class="clinic-first" align="center">Exam
-				Typologies List</td>
-		</tr>
-		<tr>
-			<th>No</th>
-			<th>Name</th>
-			<th>Description</th>
-			<th>View</th>
-		</tr>
-			<c:forEach var="examTypology" items="${examTypologiesList}"
-				varStatus="status">
-				<tr>
-				<td><b>${status.index + 1}</b></td>
-				<td>${examTypology.name}</td>
-				<td>${examTypology.description}</td>
-				<td><a href="${cp}/view/${examTypology.id}">Delete</a></td>
-		</tr>
+	<header class="navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<a href="${cp}/" class="navbar-brand">Clinica DawnStone</a>
+
+			<button class="navbar-toggle" data-toggle="collapse"
+				data-target=".navHeaderCollapse">
+				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+		</div>
+		<div class="collapse navbar-collapse navHeaderCollapse">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="${cp}/">Home</a></li>
+				<li><a href='#' data-toggle='modal'>Accedi</a></li>
+			</ul>
+		</div>
+	</div>
+	</header>
+
+	<div class="container home-body-container">
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6 text-center header-table">
+				<h2>Exam Typologies List</h2>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<div class="col-md-3 cell cell-left">No</div>
+				<div class="col-md-3 cell">Name</div>
+				<div class="col-md-3 cell">Description</div>
+				<div class="col-md-3 cell cell-right">View</div>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+		<c:forEach var="examTypology" items="${examTypologiesList}"
+			varStatus="status">
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<div class="col-md-3 cell cell-left">
+						<b>${status.index + 1}</b>
+					</div>
+					<div class="col-md-3 cell">${examTypology.name}</div>
+					<div class="col-md-3 cell">${examTypology.description}</div>
+					<div class="col-md-3 cell cell-right">
+						<a href="${cp}/view/${examTypology.id}">View Details</a>
+					</div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
 		</c:forEach>
-	</table>
-	<div class="footer">
-		Navigate: <a href="${cp}/">Index</a> <br />
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<div class="col-md-9"></div>
+				<div class="col-md-3">
+					<a href="${cp}/">link</a>
+				</div>
+			</div>
+			<div class="col-md-3"></div>
+		</div>
 	</div>
 </body>
 </html>

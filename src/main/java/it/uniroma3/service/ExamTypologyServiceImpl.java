@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.dao.ExamTypologyDao;
 import it.uniroma3.model.ExamTypology;
@@ -34,6 +35,7 @@ public class ExamTypologyServiceImpl implements ExamTypologyService {
 	 * @see it.uniroma3.service.ExamTypology#insertExamTypology(it.uniroma3.model.ExamTypology)
 	 */
 	@Override
+	@Transactional
 	public void insertExamTypology(ExamTypology examTypology) {
 		this.examTypologyDao.insertExamTypology(examTypology);
 	}
@@ -42,6 +44,7 @@ public class ExamTypologyServiceImpl implements ExamTypologyService {
 	 * @see it.uniroma3.service.ExamTypology#deleteExamTypology(java.lang.Long)
 	 */
 	@Override
+	@Transactional
 	public void deleteExamTypology(Long id) {
 		this.examTypologyDao.deleteExamTypology(id);
 	}

@@ -11,7 +11,7 @@
       <!-- Using JDBC Driver: JTDS -->
       <property name="driverClassName" value="org.postgresql.Driver" />
       <property name="url" value="jdbc:postgresql://localhost/typologies" />
-      <property name="username" value="postgres" />
+      <property name="username" value="pino" />
       <property name="password" value="postgres" />
   </bean>
 </beans>

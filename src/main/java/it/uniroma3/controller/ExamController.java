@@ -1,5 +1,7 @@
 package it.uniroma3.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,30 +21,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import it.uniroma3.model.Exam;
+import it.uniroma3.model.ExamTypology;
+import it.uniroma3.model.Medic;
 import it.uniroma3.service.ExamService;
 //import it.uniroma3.validator.ExamValidator;
+import it.uniroma3.service.MedicService;
 
 @Controller
-@RequestMapping("/exam")
+//@RequestMapping("/exam")
 	public class ExamController extends WebMvcConfigurerAdapter{
 	
 	@Autowired
 	private ExamService examService;
 	
 	@Autowired
-	@Qualifier("examValidator")
-	private Validator validator;
-	
-	@InitBinder
-	private void initBinder(WebDataBinder binder) {
-		binder.setValidator(validator);
-	}
-	
-	@ModelAttribute("exam")
-	public Exam createExamModel() {
-		return new Exam();
-	}
-	
+	private MedicService medicService;
 	@RequestMapping("/listexam")
 	public String listExam(Model model) {
 		model.addAttribute("examsList", examService.listExam());
@@ -51,7 +44,8 @@ import it.uniroma3.service.ExamService;
 	
 	@RequestMapping(value="/addexam", method = RequestMethod.GET)
 	public String addExam(Model model) {
-		return "/addexam";
+		model.addAttribute("exam", new Exam());
+		return "addexam";
 	}
 	
 	@RequestMapping(value="/updateexam", method = RequestMethod.POST)
@@ -60,7 +54,20 @@ import it.uniroma3.service.ExamService;
 			return "addexam";
 		this.examService.insertExam(exam);
 		model.addAttribute("examList", examService.listExam());
-		return "exam";
+		return "index";
+	}
+	
+	@RequestMapping(value = "/findmedic", method = RequestMethod.GET)
+	public String getMedic(Model model) {
+		return "searchmedic";
+	}
+	
+	@RequestMapping(value = "/findexam/{mName}/{mSurname}", method = RequestMethod.POST)
+	public String getExams(@PathVariable("mName") String name, @PathVariable("mSurname") String surname, Model model) {
+		Medic medic = this.medicService.getMedic(name, surname);
+		Exam exam = this.examService.getExam(medic.getId());
+		model.addAttribute("examsList", exam);
+		return "listexams";
 	}
 	
 	@RequestMapping(value="/delete/{eId}", method = RequestMethod.GET)

@@ -27,7 +27,7 @@
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
 		<property name="persistenceUnitName" value="dawnstone" />
-		<property name="dataSource" ref="dataSource" />
+		<property name="dataSource" ref="myDataSource" />
 		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
 		<property name="jpaDialect" ref="jpaDialect" />
 		<property name="jpaProperties">
@@ -47,19 +47,19 @@
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
-		<property name="dataSource" ref="dataSource" />
+		<property name="dataSource" ref="myDataSource" />
 		<property name="jpaDialect" ref="jpaDialect" />
 	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="org.postgresql.Driver" />
-		<property name="url" value="jdbc:postgresql://localhost/typologies" />
-		<property name="username" value="postgres" />
-		<property name="password" value="postgres" />
-	</bean>
+<!-- 	<bean id="dataSource" -->
+<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+<!-- 		<property name="driverClassName" value="org.postgresql.Driver" /> -->
+<!-- 		<property name="url" value="jdbc:postgresql://localhost/typologies" /> -->
+<!-- 		<property name="username" value="postgres" /> -->
+<!-- 		<property name="password" value="postgres" /> -->
+<!-- 	</bean> -->
 
 	<context:component-scan base-package="it.uniroma3" />
 	<context:annotation-config />

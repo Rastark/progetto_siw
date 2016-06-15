@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.dao.ResultTypologyDao;
 import it.uniroma3.model.ResultTypology;
@@ -34,6 +35,7 @@ public class ResultTypologyServiceImpl implements ResultTypologyService {
 	 * @see it.uniroma3.service.ResultTypologyService#insertResultTypology(it.uniroma3.model.ResultTypology)
 	 */
 	@Override
+	@Transactional
 	public void insertResultTypology(ResultTypology resultTypology) {
 		this.resultTypologyDao.insertResultTypology(resultTypology);
 	}
@@ -42,6 +44,7 @@ public class ResultTypologyServiceImpl implements ResultTypologyService {
 	 * @see it.uniroma3.service.ResultTypologyService#deleteResultTypology(java.lang.Long)
 	 */
 	@Override
+	@Transactional
 	public void deleteResultTypology(Long id) {
 		this.resultTypologyDao.deleteResultTypology(id);
 	}

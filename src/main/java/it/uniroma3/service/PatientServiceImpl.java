@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.dao.PatientDao;
 import it.uniroma3.model.Patient;
@@ -34,6 +35,7 @@ public class PatientServiceImpl implements PatientService {
 	 * @see it.uniroma3.service.PatientService#insertPatient(it.uniroma3.model.Patient)
 	 */
 	@Override
+	@Transactional
 	public void insertPatient(Patient patient) {
 		this.patientDao.insertPatient(patient);
 	}
@@ -42,6 +44,7 @@ public class PatientServiceImpl implements PatientService {
 	 * @see it.uniroma3.service.PatientService#deletePatient(java.lang.Long)
 	 */
 	@Override
+	@Transactional
 	public void deletePatient(Long id) {
 		this.patientDao.deletePatient(id);
 	}

@@ -4,6 +4,7 @@ package it.uniroma3.controller;
 
 import javax.validation.Valid;
 
+import org.jgroups.blocks.MemcachedConnector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -19,37 +20,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import it.uniroma3.model.ExamTypology;
 import it.uniroma3.service.ExamTypologyService;
+import it.uniroma3.service.PrerequisiteService;
 
 @Controller
 public class ExamTypologyController {
 
 	@Autowired
 	private ExamTypologyService examTypologyService;
-
-	//	@Autowired
-	//	@Qualifier("examTypologyValidator")
-	//	private Validator validator;
-	//
-	//	@InitBinder
-	//	private void initBinder(WebDataBinder binder) {
-	//		binder.setValidator(validator);
-	//	}
-
-	//	@ModelAttribute("examTypology")
-	//	public ExamTypology createExamTypologyModel() {
-	//		return new ExamTypology();
-	//	}
-
-	//	@RequestMapping(value = "/", method = RequestMethod.GET)
-	//	public String welcomeHandler(Model model) {
-	//		model.addAttribute("examTypology", new ExamTypology());
-	//		return "index";
-	//	}
-	//	
+	
+	@Autowired
+	private PrerequisiteService prerequisiteService;
 	@RequestMapping(value="/listexamtypology", method = RequestMethod.GET)
 	public String listExamTypology(Model model) {
 		model.addAttribute("examTypologiesList", examTypologyService.listExamTypology());
-		return "examTypology";
+		return "listexamtypology";
 	}	
 
 	@RequestMapping(value = "/addexamtypology", method = RequestMethod.GET)
@@ -70,6 +54,14 @@ public class ExamTypologyController {
 		}	
 		model.addAttribute("examTypologiesList", examTypologyService.listExamTypology());
 		return "examtypologyadded";
+	}
+	
+	@RequestMapping(value = "/view/{etId}", method = RequestMethod.GET)
+	public String getExamTypology(@PathVariable("etId") Long etId, Model model) {
+		ExamTypology examTypology = this.examTypologyService.getExamTypology(etId);
+		model.addAttribute("examTypology", examTypology);
+		model.addAttribute("prerequistesList", this.prerequisiteService.listPrerequisite());
+		return "selectedexamtypology";
 	}
 	
 	@RequestMapping(value = "/updateexamtypology", method = RequestMethod.GET)

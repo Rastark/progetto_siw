@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.dao.ExamDao;
 import it.uniroma3.model.Exam;
@@ -34,6 +35,7 @@ public class ExamServiceImpl implements ExamService{
 	 * @see it.uniroma3.service.ExamService#insertExam(it.uniroma3.model.Exam)
 	 */
 	@Override
+	@Transactional
 	public void insertExam(Exam exam) {
 		this.examDao.insertExam(exam);
 	}
@@ -42,6 +44,7 @@ public class ExamServiceImpl implements ExamService{
 	 * @see it.uniroma3.service.ExamService#deleteExam(java.lang.Long)
 	 */
 	@Override
+	@Transactional
 	public void deleteExam(Long id) {
 		this.examDao.deleteExam(id);
 	}

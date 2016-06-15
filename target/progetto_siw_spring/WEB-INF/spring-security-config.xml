@@ -9,7 +9,8 @@
 	<intercept-url pattern="/resources/**" access="permitAll" />
 	<intercept-url pattern="/login" access="permitAll" />
 	<intercept-url pattern="/" access="permitAll" />
-	<intercept-url pattern="/addexamtypology" access="hasRole('admin')" />
+	<intercept-url pattern="/addexamtypology" access="permitAll" />
+<!-- 	risistemare -->
 	
 <!-- 		<intercept-url pattern="/**" access="hasRole('USER')" /> -->
 
@@ -30,9 +31,9 @@
 	  <authentication-provider>
 		<jdbc-user-service data-source-ref="myDataSource"
 		  users-by-username-query=
-		    "select username,password, enabled from users where username=?"
+		    "select email,password, enabled from admin where username=?"
 		  authorities-by-username-query=
-		    "select username, role from user_roles where username =?  " />
+		    "select e1.email, e1.role from roles_patients e1, role_admin e2 where e1.email= e1.email=?" />
 	  </authentication-provider>
 	</authentication-manager>
 	

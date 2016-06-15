@@ -1,0 +1,26 @@
+.home-body-container {
+    margin-top: 125px;
+}
+
+.header-table {
+    padding-bottom: 10px;
+    color: #FFF;
+    border: 3px solid #000;
+    background: #2a2b30;
+}
+
+.cell {
+    padding: 10px 5px;
+}
+
+.cell-left, .cell-bottom-left {
+    border-left: 1px solid #000;
+}
+
+.cell-right, .cell-bottom-right {
+    border-right: 1px solid #000;
+}
+
+.cell-bottom, .cell-bottom-right, .cell-bottom-left {
+    border-bottom: 1px solid #000;
+}

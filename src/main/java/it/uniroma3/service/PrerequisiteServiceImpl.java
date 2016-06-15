@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.dao.PrerequisiteDao;
 import it.uniroma3.model.Prerequisite;
@@ -34,6 +35,7 @@ public class PrerequisiteServiceImpl implements PrerequisiteService {
 	 * @see it.uniroma3.service.PrerequisiteService#insertPrerequisite(it.uniroma3.model.Prerequisite)
 	 */
 	@Override
+	@Transactional
 	public void insertPrerequisite(Prerequisite prerequisite) {
 		this.prerequisiteDao.insertPrerequisite(prerequisite);
 	}
@@ -42,6 +44,7 @@ public class PrerequisiteServiceImpl implements PrerequisiteService {
 	 * @see it.uniroma3.service.PrerequisiteService#deletePrerequisite(java.lang.Long)
 	 */
 	@Override
+	@Transactional
 	public void deletePrerequisite(Long id) {
 		this.prerequisiteDao.deletePrerequisite(id);
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.dao.AdminDao;
 import it.uniroma3.model.Admin;
@@ -34,6 +35,7 @@ public class AdminServiceImpl implements AdminService {
 	 * @see it.uniroma3.service.AdminService#insertAdmin(it.uniroma3.model.Admin)
 	 */
 	@Override
+	@Transactional
 	public void insertAdmin(Admin admin) {
 		this.adminDao.insertAdmin(admin);
 	}
@@ -42,6 +44,7 @@ public class AdminServiceImpl implements AdminService {
 	 * @see it.uniroma3.service.AdminService#deleteAdmin(java.lang.Long)
 	 */
 	@Override
+	@Transactional
 	public void deleteAdmin(Long id) {
 		this.adminDao.deleteAdmin(id);
 	}
