@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.dao.ResultDao;
 import it.uniroma3.model.Result;
 
 @Service
+@Transactional
 public class ResultServiceImpl implements ResultService {
 
 	@Autowired

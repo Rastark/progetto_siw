@@ -8,7 +8,7 @@ import it.uniroma3.model.Medic;
 
 public interface MedicDao {
 
-	public Medic getMedic(Long id);
+	public Medic getMedic(String name, String surname);
 
 	public List<Medic> getAllMedics();
 

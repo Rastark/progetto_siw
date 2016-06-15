@@ -14,7 +14,7 @@
 		<class>it.uniroma3.model.ResultTypology</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
-			<property name="javax.persistence.jdbc.user" value="postgres" />
+			<property name="javax.persistence.jdbc.user" value="pino" />
 			<property name="javax.persistence.jdbc.password" value="postgres" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/typologies" />
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />

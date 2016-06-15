@@ -6,7 +6,7 @@ import it.uniroma3.model.Medic;
 
 public interface MedicService {
 
-	public Medic getMedic(Long id);
+	public Medic getMedic(String name, String surname);
 
 	public List<Medic> listMedic();
 

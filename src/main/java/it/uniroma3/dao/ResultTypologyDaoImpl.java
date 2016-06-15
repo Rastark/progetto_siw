@@ -7,15 +7,17 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.model.ResultTypology;
 
 @Repository
+@Transactional(propagation = Propagation.REQUIRED)
 public class ResultTypologyDaoImpl implements ResultTypologyDao {
 	
-	@Autowired
-	@PersistenceContext(unitName = "dawnstone")
+//	@Autowired
+	@PersistenceContext
 	private EntityManager em;
 	
 	/* (non-Javadoc)
@@ -40,7 +42,6 @@ public class ResultTypologyDaoImpl implements ResultTypologyDao {
 	 * @see it.uniroma3.dao.ResultTypologyDao#insertResultTypology(it.uniroma3.model.ResultTypology)
 	 */
 	@Override
-	@Transactional
 	public void insertResultTypology(ResultTypology resultTypology) {
 		em.persist(resultTypology);
 	}
@@ -49,7 +50,6 @@ public class ResultTypologyDaoImpl implements ResultTypologyDao {
 	 * @see it.uniroma3.dao.ResultTypologyDao#deleteResultTypology(java.lang.Long)
 	 */
 	@Override
-	@Transactional
 	public void deleteResultTypology(Long id) {
 		ResultTypology resultTypology = em.find(ResultTypology.class, id);
 		em.remove(resultTypology);

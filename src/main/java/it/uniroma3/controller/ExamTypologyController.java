@@ -2,11 +2,17 @@ package it.uniroma3.controller;
 
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
@@ -17,14 +23,30 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import it.uniroma3.model.Exam;
 import it.uniroma3.model.ExamTypology;
+import it.uniroma3.model.Prerequisite;
+import it.uniroma3.model.ResultTypology;
+import it.uniroma3.service.ExamService;
 import it.uniroma3.service.ExamTypologyService;
+import it.uniroma3.service.PrerequisiteService;
+import it.uniroma3.service.ResultTypologyService;
 
 @Controller
 public class ExamTypologyController {
 
 	@Autowired
 	private ExamTypologyService examTypologyService;
+	
+	@Autowired
+	private PrerequisiteService prerequisiteService;
+	
+	@Autowired
+	private ResultTypologyService resultTypologyService;
+	
+	@Autowired
+	private ExamService examService;
 
 	//	@Autowired
 	//	@Qualifier("examTypologyValidator")
@@ -50,16 +72,35 @@ public class ExamTypologyController {
 	public String listExamTypology(Model model) {
 		model.addAttribute("examTypologiesList", examTypologyService.listExamTypology());
 		return "examTypology";
-	}	
+	}
+	
+	@RequestMapping(value = "/view/{etId}", method = RequestMethod.GET)
+	public String getExamTypology(@PathVariable("etId") Long id, Model model) {
+		model.addAttribute("examTypology", this.examTypologyService.getExamTypology(id));
+		return "";
+	}
 
 	@RequestMapping(value = "/addexamtypology", method = RequestMethod.GET)
 	public String addExamTypology(Model model) {
+//		List<Prerequisite> listPrerequisite = new ArrayList<Prerequisite>(this.prerequisiteService.listPrerequisite());
+//		List<ResultTypology> listResultTypology = new ArrayList<ResultTypology>(this.resultTypologyService.listResultTypology());
+		//		Map prerequisiteMap = new HashMap();
+//		prerequisiteMap.put("prerequisiteMap", listPrerequisite);
+//		List<ResultTypology> listResultTypology = new ArrayList<ResultTypology>(this.resultTypologyService.listResultTypology());
+//		Map resultTypologyMap = new HashMap();
+//		resultTypologyMap.put("resultTypologyMap", listResultTypology);
+//		List<Exam> listExam = new ArrayList<Exam>(this.examService.listExam());
 		model.addAttribute("examTypology", new ExamTypology());
+//		model.addAttribute("prerequisitesMap", prerequisiteMap);
+//		model.addAttribute("resultTypologiesMap", prerequisiteMap);
+//		model.addAttribute("examsList", listExam);
+		model.addAttribute("prerequisitesList", prerequisiteService.listPrerequisite());
+		model.addAttribute("resultTypologiesList", resultTypologyService.listResultTypology());
 		return "addexamtypology";
 	}
 
 	@RequestMapping(value = "/updateexamtypology", method = RequestMethod.POST)
-	public String updateExamTypology(@Valid @ModelAttribute("examTypology") ExamTypology examTypology, BindingResult bindingResult, Model model) {
+	public String insertExamTypology(@Valid @ModelAttribute("examTypology") ExamTypology examTypology, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) 
 			return "addexamtypology";
 		try {
@@ -72,12 +113,12 @@ public class ExamTypologyController {
 		return "examtypologyadded";
 	}
 	
-	@RequestMapping(value = "/updateexamtypology", method = RequestMethod.GET)
-	public String updateNoGet() {
-		return "addexamtypology";
-	}
+//	@RequestMapping(value = "/updateexamtypology", method = RequestMethod.GET)
+//	public String updateNoGet() {
+//		return "addexamtypology";
+//	}
 
-	@RequestMapping(value="/delete/{etId}", method = RequestMethod.GET)
+	@RequestMapping(value="/deleteet/{etId}", method = RequestMethod.GET)
 	public String deleteExamTypology(@PathVariable("etId") Long etId, Model model) {
 		this.examTypologyService.deleteExamTypology(etId);
 		model.addAttribute("examTypologiesList", examTypologyService.listExamTypology());

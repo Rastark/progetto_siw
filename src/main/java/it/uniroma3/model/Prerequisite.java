@@ -1,5 +1,6 @@
 package it.uniroma3.model;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -35,8 +36,8 @@ public class Prerequisite {
 	@Column(nullable=false)
 	private String description;
 	
-	@ManyToMany
-	private List<ExamTypology> examTypologies;
+	@ManyToMany(mappedBy="prerequisites")
+	private Collection<ExamTypology> examTypologies;
 
 	public Long getId() {
 		return id;
@@ -58,7 +59,7 @@ public class Prerequisite {
 		this.description = description;
 	}
 
-	public List<ExamTypology> getExamTypologies() {
+	public Collection<ExamTypology> getExamTypologies() {
 		return examTypologies;
 	}
 

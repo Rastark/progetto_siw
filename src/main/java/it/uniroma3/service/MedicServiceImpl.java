@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.dao.MedicDao;
 import it.uniroma3.model.Medic;
 
 @Service
+@Transactional
 public class MedicServiceImpl implements MedicService {
 
 	@Autowired
@@ -18,8 +20,8 @@ public class MedicServiceImpl implements MedicService {
 	 * @see it.uniroma3.service.MedicService#getMedic(java.lang.Long)
 	 */
 	@Override
-	public Medic getMedic(Long id) {
-		return this.medicDao.getMedic(id);
+	public Medic getMedic(String name, String surname) {
+		return this.medicDao.getMedic(name, surname);
 	}
 	
 	/* (non-Javadoc)

@@ -2,6 +2,7 @@ package it.uniroma3.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,7 @@ public class ResultTypology {
 	@Column(nullable=false)
 	private String name;
 	
-	@OneToMany(mappedBy="resultTypology")
+	@OneToMany(mappedBy="resultTypology", cascade = CascadeType.ALL)
 	private List<Result> results;
 	
 	@ManyToMany

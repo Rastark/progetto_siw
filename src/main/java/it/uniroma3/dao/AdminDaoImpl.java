@@ -7,15 +7,17 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.model.Admin;
 
 @Repository
+@Transactional(propagation = Propagation.REQUIRED)
 public class AdminDaoImpl implements AdminDao {
 	
-	@Autowired
-	@PersistenceContext(unitName = "dawnstone")
+//	@Autowired
+	@PersistenceContext
 	private EntityManager em;
 	
 	/* (non-Javadoc)
@@ -40,7 +42,6 @@ public class AdminDaoImpl implements AdminDao {
 	 * @see it.uniroma3.dao.AdminDao#insertAdmin(it.uniroma3.model.Admin)
 	 */
 	@Override
-	@Transactional
 	public void insertAdmin(Admin admin) {
 		em.persist(admin);
 	}
@@ -49,7 +50,6 @@ public class AdminDaoImpl implements AdminDao {
 	 * @see it.uniroma3.dao.AdminDao#deleteAdmin(java.lang.Long)
 	 */
 	@Override
-	@Transactional
 	public void deleteAdmin(Long id) {
 		Admin admin = em.find(Admin.class, id);
 		em.remove(admin);

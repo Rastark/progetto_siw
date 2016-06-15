@@ -2,8 +2,10 @@ package it.uniroma3.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,7 +37,7 @@ public class Patient {
 	@Column(nullable=false)
 	private String surname;
 
-	@OneToMany(mappedBy="patient")
+	@OneToMany(mappedBy="patient",fetch=FetchType.EAGER)
 	private List<Exam> exams;
 	
 	public Patient(String name, String surname) {

@@ -8,15 +8,17 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.model.Result;
 
 @Repository
+@Transactional(propagation = Propagation.REQUIRED)
 public class ResultDaoImpl implements ResultDao {
 
-	@Autowired
-	@PersistenceContext(unitName = "dawnstone")
+//	@Autowired
+	@PersistenceContext
 	private EntityManager em;
 	
 	/* (non-Javadoc)
@@ -41,7 +43,6 @@ public class ResultDaoImpl implements ResultDao {
 	 * @see it.uniroma3.dao.ResultDao#insertResult(it.uniroma3.model.Result)
 	 */
 	@Override
-	@Transactional
 	public void insertResult(Result result) {
 		em.persist(result);
 	}
@@ -50,7 +51,6 @@ public class ResultDaoImpl implements ResultDao {
 	 * @see it.uniroma3.dao.ResultDao#deleteResult(java.lang.Long)
 	 */
 	@Override
-	@Transactional
 	public void deleteResult(Long id) {
 		Result result = em.find(Result.class, id);
 		em.remove(result);

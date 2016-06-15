@@ -1,9 +1,18 @@
 package it.uniroma3.model;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +21,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.engine.internal.Collections;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
@@ -42,14 +52,18 @@ public class ExamTypology {
 	@Pattern(regexp="[0-9]", message="must be a number")
 	private String cost;
 
-	@OneToMany(mappedBy = "examTypology")
+	@OneToMany(mappedBy = "examTypology", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Exam> exams;
 
-	@ManyToMany(mappedBy="examTypologies")
-	private List<Prerequisite> prerequisites;
+	@ManyToMany
+	@JoinTable(
+		      name="prerequisite_examtypology",
+		      joinColumns=@JoinColumn(name="prerequisite_id", referencedColumnName="id"),
+		      inverseJoinColumns=@JoinColumn(name="examtypology_id", referencedColumnName="id"))
+	private Collection<Prerequisite> prerequisites = new HashSet<Prerequisite>();
 
 	@ManyToMany(mappedBy="examTypologies")
-	private List<ResultTypology> resultTypologies;
+	private Set<ResultTypology> resultTypologies = new HashSet<ResultTypology>();
 
 	/* Getters and Setters */
 	public long getId() {
@@ -89,19 +103,19 @@ public class ExamTypology {
 		this.exams = exams;
 	}
 
-	public List<Prerequisite> getPrerequisites() {
+	public Collection<Prerequisite> getPrerequisites() {
 		return prerequisites;
 	}
 
-	public void setPrerequisites(List<Prerequisite> prerequisites) {
+	public void setPrerequisites(Set<Prerequisite> prerequisites) {
 		this.prerequisites = prerequisites;
 	}
 
-	public List<ResultTypology> getResultTypologies() {
+	public Collection<ResultTypology> getResultTypologies() {
 		return resultTypologies;
 	}
 
-	public void setResultTypologies(List<ResultTypology> resultTypologies) {
+	public void setResultTypologies(Set<ResultTypology> resultTypologies) {
 		this.resultTypologies = resultTypologies;
 	}
 

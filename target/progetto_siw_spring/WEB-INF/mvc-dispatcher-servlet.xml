@@ -1,7 +1,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="
       http://www.springframework.org/schema/beans    
       http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
@@ -10,7 +10,9 @@
       http://www.springframework.org/schema/tx
 	  http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
 	  http://www.springframework.org/schema/mvc
-	  http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
+	  http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+      http://www.springframework.org/schema/aop
+      http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 
 	<!-- <bean id="pum" -->
 	<!-- class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager"> -->
@@ -19,15 +21,16 @@
 	<!-- </bean> -->
 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-	<mvc:default-servlet-handler />
 	<mvc:annotation-driven />
 
 	<mvc:view-controller path="/" view-name="index" />
 
+
+
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
-		<property name="persistenceUnitName" value="dawnstone" />
+<!-- 		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" /> -->
+<!-- 		<property name="persistenceUnitName" value="dawnstone" /> -->
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
 		<property name="jpaDialect" ref="jpaDialect" />
@@ -36,7 +39,14 @@
 				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
 			</props>
 		</property>
+		<property name="persistenceUnitName" value="dawnstone" />
+		<property name="packagesToScan">
+			<list>
+				<value>it.uniroma3.model</value>
+			</list>
+		</property>
 	</bean>
+
 
 	<bean id="jpaVendorAdapter"
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
@@ -52,13 +62,23 @@
 		<property name="jpaDialect" ref="jpaDialect" />
 	</bean>
 
+
+<!-- 	<bean id="transactionManager" -->
+<!-- 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->
+		<!-- (this dependency is defined somewhere else) -->
+<!-- 		<property name="dataSource" ref="dataSource" /> -->
+<!-- 	</bean> -->
+	
+	
 	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!-- <tx:tags /> -->
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="org.postgresql.Driver" />
 		<property name="url" value="jdbc:postgresql://localhost/typologies" />
-		<property name="username" value="postgres" />
+		<property name="username" value="pino" />
 		<property name="password" value="postgres" />
 	</bean>
 
@@ -79,17 +99,19 @@
 			<value>/WEB-INF/pages/</value>
 		</property>
 		<property name="suffix">
- 			<value>.jsp</value> 
+			<value>.jsp</value>
 		</property>
 	</bean>
 
-<!-- 	<bean id="viewResolver" -->
-<!-- 		class="org.springframework.web.servlet.view.UrlBasedViewResolver"> -->
-<!-- 		<property name="viewClass" -->
-<!-- 			value="org.springframework.web.servlet.view.JstlView" /> -->
-<!-- 		<property name="prefix" value="/WEB-INF/pages/" /> -->
-<!-- 		<property name="suffix" value=".jsp" /> -->
-<!-- 	</bean> -->
+	<bean id="lazy" class="it.uniroma3.model.Prerequisite" lazy-init="true" />
+
+	<!-- <bean id="viewResolver" -->
+	<!-- class="org.springframework.web.servlet.view.UrlBasedViewResolver"> -->
+	<!-- <property name="viewClass" -->
+	<!-- value="org.springframework.web.servlet.view.JstlView" /> -->
+	<!-- <property name="prefix" value="/WEB-INF/pages/" /> -->
+	<!-- <property name="suffix" value=".jsp" /> -->
+	<!-- </bean> -->
 
 	<!-- <bean id="sessionFactory" -->
 	<!-- class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"> -->

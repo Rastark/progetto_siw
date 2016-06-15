@@ -19,7 +19,7 @@
 			<th>Typology</th>
 			<th>Result</th>
 		</tr>
-		<c:forEach var="result" items="${resultList}" varStatus="status">
+		<c:forEach var="result" items="${examsList}" varStatus="status">
 			<tr>
 				<td><b>${status.index + 1}</b></td>
 				<td>${result.resultTypology}</td>

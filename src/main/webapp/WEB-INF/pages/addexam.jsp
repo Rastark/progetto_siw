@@ -17,29 +17,30 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
-					<form:label path="visitDate" />
+					<form:label path="visitDate" >VisitDate</form:label>
 					<form:input path="visitDate" />
 					<br />
-					<form:label path="code" />
+					<form:label path="code">Code</form:label>
 					<form:input path="code" />
 					<br />
 				</div>
-				<div class="col-md-6">
-					<form:label path="examTypology" />
-					<form:select path="examTypology">
-						<form:options items="${examTypologiesList}" />
-					</form:select>
-					<br />
-					<form:label path="medic" />
-					<form:select path="medic">
-						<form:options items="${medicsList}" />
-					</form:select>
-					<br />
-					<form:label path="patient" />
-					<form:select path="patient">
-						<form:options items="${patientsList}" />
-					</form:select>
-				</div>
+<!-- 				<div class="col-md-6"> -->
+<%-- 					<form:label path="examTypology" /> --%>
+<%-- 					<form:select path="examTypology"> --%>
+<%-- 						<form:options items="${examTypologiesList}" /> --%>
+<%-- 					</form:select> --%>
+<!-- 					<br /> -->
+<%-- 					<form:label path="medic" /> --%>
+<%-- 					<form:select path="medic"> --%>
+<%-- 						<form:options items="${medicsList}" /> --%>
+<%-- 					</form:select> --%>
+<!-- 					<br /> -->
+<%-- 					<form:label path="patient" /> --%>
+<%-- 					<form:select path="patient"> --%>
+<%-- 						<form:options items="${patientsList}" /> --%>
+<%-- 					</form:select> --%>
+					<input type="submit" value="submit" />
+<!-- 				</div> -->
 			</div>
 		</div>
 	</form:form>

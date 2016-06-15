@@ -37,7 +37,7 @@
 				<td>${examTypology.code}</td>
 				<td>${examTypology.cost}</td>
 				<td>${examTypology.description}</td>
-				<td><a href="${cp}/delete/${examTypology.id}">Delete</a></td>
+				<td><a href="${cp}/deleteet/${examTypology.id}">Delete</a></td>
 			</tr>
 		</c:forEach>
 	</table>

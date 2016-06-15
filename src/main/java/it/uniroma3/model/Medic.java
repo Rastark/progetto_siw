@@ -2,8 +2,10 @@ package it.uniroma3.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,7 +42,7 @@ public class Medic {
 	@Column(nullable=false)
 	private String specialization;
 
-	@OneToMany(mappedBy="medic")
+	@OneToMany(mappedBy="medic", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Exam> exams;
 
 	/* Getters and setters */

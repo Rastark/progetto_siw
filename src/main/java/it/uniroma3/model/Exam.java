@@ -2,11 +2,16 @@ package it.uniroma3.model;
 
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -32,8 +37,8 @@ public class Exam {
 	
 	@NotNull
 	@Future
-	@Pattern(regexp="^[0-9]{2}[-][0-9]{2}[-][0-9]{4}$", message="the date must respect the following format: gg-mm-aaaa")
-	@DateTimeFormat(pattern="dd-MM-yyyy")
+	@Pattern(regexp="^[0-9]{4}-[0-9]{2}-[0-9]{2}$", message="coglione")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date visitDate;
 	
@@ -42,16 +47,16 @@ public class Exam {
 	@Column(nullable=false, unique=true)
 	private String code;
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private ExamTypology examTypology;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private Medic medic;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private Patient patient;
 	
-	@OneToMany(mappedBy="exam")
+	@OneToMany(mappedBy="exam", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Result> results;
 	
 	/* Getters and setters */

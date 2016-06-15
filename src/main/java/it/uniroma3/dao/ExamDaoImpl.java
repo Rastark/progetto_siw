@@ -1,21 +1,24 @@
 package it.uniroma3.dao;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.model.Exam;
 
 @Repository
+@Transactional(propagation = Propagation.REQUIRED)
 public class ExamDaoImpl implements ExamDao {
 
-	@Autowired
-	@PersistenceContext(unitName = "dawnstone")
+//	@Autowired
+	@PersistenceContext
 	private EntityManager em;
 	
 	/* (non-Javadoc)
@@ -45,7 +48,6 @@ public class ExamDaoImpl implements ExamDao {
 	 * @see it.uniroma3.dao.ExamDai#insertExam(it.uniroma3.model.Exam)
 	 */
 	@Override
-	@Transactional
 	public void insertExam(Exam exam) {
 		em.persist(exam);
 	}
@@ -54,10 +56,21 @@ public class ExamDaoImpl implements ExamDao {
 	 * @see it.uniroma3.dao.ExamDai#deleteExam(java.lang.Long)
 	 */
 	@Override
-	@Transactional
 	public void deleteExam(Long id) {
 		Exam exam = em.find(Exam.class, id);
 		em.remove(exam);
+	}
+
+	@Override
+	public List<Exam> getPatientExams(Long id) {
+		List<Exam> listPatientExams = em.createQuery("SELECT e FROM Exam e WHERE e.id = :id").setParameter("id", id).getResultList();
+		return listPatientExams;
+	}
+
+	@Override
+	public List<Exam> getMedicExam(Long id) {
+		List<Exam> listMedicExam = em.createQuery("SELECT e FROM Exam e WHERE e.id_medic = :id", Exam.class).setParameter("id", id).getResultList();
+		return listMedicExam;
 	}
 	
 //	/** Creates an exam of the selected typology, the exam is persisted

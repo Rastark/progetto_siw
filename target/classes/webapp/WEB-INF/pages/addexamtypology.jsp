@@ -37,13 +37,12 @@
 				<br />
 				<form:label path="prerequisites">Prerequisites:</form:label>
 				<br />
-				<form:checkboxes items="prerequisitesList}" path="prerequisites" />
+				<form:checkboxes items="${prerequisitesList}" path="prerequisites"></form:checkboxes>
 				<form:errors path="prerequisites" />
-				<input type="submit" value="invia" />
 				<br /><br />
 				<form:label path="resultTypologies">Result Typologies:</form:label>
 				<br />
-				<form:checkboxes items="resultTypologiesList}" path="resultTypologies" />
+				<form:checkboxes items="${resultTypologiesList}" path="resultTypologies" />
 				<form:errors path="resultTypologies" />
 				<br />
 				<input type="submit" value="invia" />
