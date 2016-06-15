@@ -19,7 +19,6 @@
 	<!-- </bean> -->
 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-	<mvc:default-servlet-handler />
 	<mvc:annotation-driven />
 
 	<mvc:view-controller path="/" view-name="index" />

@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Add new Exam</title>
 <link href="bootstrap.css" rel="stylesheet" type="text/css" />
+<c:set var="cp" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
 	<h1>Insert new exam:</h1>

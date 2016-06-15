@@ -7,8 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <head>
 <title>Exam typology persisted</title>
-<c:url var="css1" value="/resources/clinic.css"/>
+<c:url var="css1" value="/clinic.css"/>
 <c:url var="css2" value="/resources/bootstrap.css"/>
+<c:set var="cp" value="${pageContext.request.contextPath}"/>
 <link href="${css1}" rel="stylesheet" type="text/css" />
 <link href="${css2}" rel="stylesheet" type="text/css" />
 </head>
@@ -36,12 +37,12 @@
 				<td>${examTypology.code}</td>
 				<td>${examTypology.cost}</td>
 				<td>${examTypology.description}</td>
-				<td><a href="delete/${examTypology.id}">Delete</a></td>
+				<td><a href="${cp}/delete/${examTypology.id}">Delete</a></td>
 			</tr>
 		</c:forEach>
 	</table>
 	<div class="footer">
-		Navigate: <a href="index">Index</a> <br /> <a href="addexamtypology">Add
+		Navigate: <a href="${cp}/">Index</a> <br /> <a href="${cp}/addexamtypology">Add
 			another exam typology</a>
 	</div>
 </body>

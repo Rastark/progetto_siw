@@ -8,6 +8,7 @@
 <title>Your exams</title>
 <link href="clinic.css" rel="stylesheet" type="text/css" />
 <link href="bootstrap.css" rel="stylesheet" type="text/css" />
+<c:set var="cp" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
 	<h1>Viewing exams</h1>

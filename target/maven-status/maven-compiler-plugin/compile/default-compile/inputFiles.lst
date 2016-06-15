@@ -1,5 +1,6 @@
 C:\Users\alxau\git\progetto_siw\src\main\java\it\uniroma3\service\PrerequisiteService.java
 C:\Users\alxau\git\progetto_siw\src\main\java\it\uniroma3\dao\ExamTypologyDaoImpl.java
+C:\Users\alxau\git\progetto_siw\src\main\java\it\uniroma3\controller\LoginController.java
 C:\Users\alxau\git\progetto_siw\src\main\java\it\uniroma3\dao\PrerequisiteDao.java
 C:\Users\alxau\git\progetto_siw\src\main\java\it\uniroma3\dao\AdminDaoImpl.java
 C:\Users\alxau\git\progetto_siw\src\main\java\it\uniroma3\service\AdminServiceImpl.java
@@ -43,6 +44,7 @@ C:\Users\alxau\git\progetto_siw\src\main\java\it\uniroma3\service\ResultTypology
 C:\Users\alxau\git\progetto_siw\src\main\java\it\uniroma3\service\ExamServiceImpl.java
 C:\Users\alxau\git\progetto_siw\src\main\java\it\uniroma3\model\Result.java
 C:\Users\alxau\git\progetto_siw\src\main\java\it\uniroma3\validator\ResultValidator.java
+C:\Users\alxau\git\progetto_siw\src\main\java\it\uniroma3\model\Role.java
 C:\Users\alxau\git\progetto_siw\src\main\java\it\uniroma3\dao\PatientDao.java
 C:\Users\alxau\git\progetto_siw\src\main\java\it\uniroma3\model\Medic.java
 C:\Users\alxau\git\progetto_siw\src\main\java\it\uniroma3\controller\ResultTypologyController.java

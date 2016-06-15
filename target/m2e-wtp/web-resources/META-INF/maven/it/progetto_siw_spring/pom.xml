@@ -207,6 +207,26 @@
 			<artifactId>spring-tx</artifactId>
 			<version>4.2.6.RELEASE</version>
 		</dependency>
+
+		<!-- ... other dependency elements ... -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<!-- http://mvnrepository.com/artifact/cglib/cglib -->

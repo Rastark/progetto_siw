@@ -15,7 +15,7 @@
 <body>
 	<h1 class="page-header text-center clinic-header">
 
-		Welcome to <i>Clinic Dawnstone</i><sup><small>TM</small></sup>
+		Welcome to the <i>Dawnstone Clinic</i><sup><small>TM</small></sup>
 
 	</h1>
 	<div class="container">
@@ -27,12 +27,13 @@
 				<li><a href="about.asp">About</a></li>
 			</ul>
 		</div>
-	<div>Navigate:</div>
-	<div>
-		<a href="${cp}/addexamtypology">create a new exam typology</a><br />
-		<a href="${cp}/listexamtypology">View exam typologies list</a><a
-			href="${cp}/addexam">Add a new exam prenotation</a><br /> <a
-			href="${cp}/findexam">Add results to an exam</a><br />
+		<div>Navigate:</div>
+		<div>
+			<a href="${cp}/addexamtypology">create a new exam typology</a><br />
+			<a href="${cp}/listexamtypology">View exam typologies list</a><br />
+			<a href="${cp}/addexam">Add a new exam prenotation</a><br /> <a
+				href="${cp}/findexam">Add results to an exam</a><br />
+		</div>
 	</div>
 </body>
 </html>

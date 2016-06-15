@@ -1,11 +1,16 @@
 package it.uniroma3.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
@@ -44,6 +49,9 @@ public class Admin {
 	@Column(nullable=false)
 	private String password;
 	
+	@ManyToMany(mappedBy="admins")
+	private Set<Role> roles = new HashSet<Role>();
+	
 	/* Getters and Setters */	
 	public String getName() {
 		return name;
@@ -81,6 +89,14 @@ public class Admin {
 		return id;
 	}
 	
+	public Set<Role> getRole() {
+		return roles;
+	}
+
+	public void setRole(Set<Role> roles) {
+		this.roles = roles;
+	}
+
 	/* Overrides */
 	@Override
 	public boolean equals(Object obj) {
@@ -94,7 +110,6 @@ public class Admin {
 	
 	@Override
 	public String toString() {
-		return "Admin [id=" + id + ", name=" + name + ", surname=" + surname + ", email=" + email + ", password="
-				+ password + "]";
+		return "Admin [id=" + id + ", name=" + name + ", surname=" + surname + ", email=" + email + "]";
 	}
 }

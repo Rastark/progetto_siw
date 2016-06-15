@@ -1,6 +1,8 @@
 package it.uniroma3.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,7 +38,7 @@ public class Prerequisite {
 	private String description;
 	
 	@ManyToMany
-	private List<ExamTypology> examTypologies;
+	private Set<ExamTypology> examTypologies = new HashSet<ExamTypology>();
 
 	public Long getId() {
 		return id;
@@ -58,11 +60,11 @@ public class Prerequisite {
 		this.description = description;
 	}
 
-	public List<ExamTypology> getExamTypologies() {
+	public Set<ExamTypology> getExamTypologies() {
 		return examTypologies;
 	}
 
-	public void setExamTypologies(List<ExamTypology> examTypologies) {
+	public void setExamTypologies(Set<ExamTypology> examTypologies) {
 		this.examTypologies = examTypologies;
 	}
 	
