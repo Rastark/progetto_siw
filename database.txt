@@ -1,0 +1,578 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: admin; Type: TABLE; Schema: public; Owner: pino; Tablespace: 
+--
+
+CREATE TABLE admin (
+    id bigint NOT NULL,
+    email character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    password character varying(12) NOT NULL,
+    surname character varying(255) NOT NULL
+);
+
+
+ALTER TABLE admin OWNER TO pino;
+
+--
+-- Name: exams; Type: TABLE; Schema: public; Owner: pino; Tablespace: 
+--
+
+CREATE TABLE exams (
+    id bigint NOT NULL,
+    code character varying(255) NOT NULL,
+    prenotationdate timestamp without time zone,
+    visitdate date NOT NULL,
+    examtypology_id bigint,
+    medic_id bigint,
+    patient_id bigint
+);
+
+
+ALTER TABLE exams OWNER TO pino;
+
+--
+-- Name: examtypologies; Type: TABLE; Schema: public; Owner: pino; Tablespace: 
+--
+
+CREATE TABLE examtypologies (
+    id bigint NOT NULL,
+    code character varying(255) NOT NULL,
+    cost character varying(255) NOT NULL,
+    description character varying(2000),
+    name character varying(255) NOT NULL
+);
+
+
+ALTER TABLE examtypologies OWNER TO pino;
+
+--
+-- Name: hibernate_sequence; Type: SEQUENCE; Schema: public; Owner: pino
+--
+
+CREATE SEQUENCE hibernate_sequence
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE hibernate_sequence OWNER TO pino;
+
+--
+-- Name: medics; Type: TABLE; Schema: public; Owner: pino; Tablespace: 
+--
+
+CREATE TABLE medics (
+    id bigint NOT NULL,
+    name character varying(255) NOT NULL,
+    specialization character varying(255) NOT NULL,
+    surname character varying(255) NOT NULL
+);
+
+
+ALTER TABLE medics OWNER TO pino;
+
+--
+-- Name: patients; Type: TABLE; Schema: public; Owner: pino; Tablespace: 
+--
+
+CREATE TABLE patients (
+    id bigint NOT NULL,
+    email character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    password character varying(12) NOT NULL,
+    surname character varying(255) NOT NULL
+);
+
+
+ALTER TABLE patients OWNER TO pino;
+
+--
+-- Name: prerequisites; Type: TABLE; Schema: public; Owner: pino; Tablespace: 
+--
+
+CREATE TABLE prerequisites (
+    id bigint NOT NULL,
+    description character varying(255) NOT NULL,
+    name character varying(255) NOT NULL
+);
+
+
+ALTER TABLE prerequisites OWNER TO pino;
+
+--
+-- Name: prerequisites_examtypologies; Type: TABLE; Schema: public; Owner: pino; Tablespace: 
+--
+
+CREATE TABLE prerequisites_examtypologies (
+    prerequisites_id bigint NOT NULL,
+    examtypologies_id bigint NOT NULL
+);
+
+
+ALTER TABLE prerequisites_examtypologies OWNER TO pino;
+
+--
+-- Name: results; Type: TABLE; Schema: public; Owner: pino; Tablespace: 
+--
+
+CREATE TABLE results (
+    id bigint NOT NULL,
+    value character varying(255) NOT NULL,
+    exam_id bigint,
+    resulttypology_id bigint
+);
+
+
+ALTER TABLE results OWNER TO pino;
+
+--
+-- Name: resulttypologies; Type: TABLE; Schema: public; Owner: pino; Tablespace: 
+--
+
+CREATE TABLE resulttypologies (
+    id bigint NOT NULL,
+    name character varying(255) NOT NULL
+);
+
+
+ALTER TABLE resulttypologies OWNER TO pino;
+
+--
+-- Name: resulttypologies_examtypologies; Type: TABLE; Schema: public; Owner: pino; Tablespace: 
+--
+
+CREATE TABLE resulttypologies_examtypologies (
+    resulttypologies_id bigint NOT NULL,
+    examtypologies_id bigint NOT NULL
+);
+
+
+ALTER TABLE resulttypologies_examtypologies OWNER TO pino;
+
+--
+-- Name: roles; Type: TABLE; Schema: public; Owner: pino; Tablespace: 
+--
+
+CREATE TABLE roles (
+    id bigint NOT NULL,
+    role character varying(255) NOT NULL
+);
+
+
+ALTER TABLE roles OWNER TO pino;
+
+--
+-- Name: roles_admin; Type: TABLE; Schema: public; Owner: pino; Tablespace: 
+--
+
+CREATE TABLE roles_admin (
+    roles_id bigint NOT NULL,
+    admins_id bigint NOT NULL
+);
+
+
+ALTER TABLE roles_admin OWNER TO pino;
+
+--
+-- Name: roles_patients; Type: TABLE; Schema: public; Owner: pino; Tablespace: 
+--
+
+CREATE TABLE roles_patients (
+    role_id bigint NOT NULL,
+    patients_id bigint NOT NULL
+);
+
+
+ALTER TABLE roles_patients OWNER TO pino;
+
+--
+-- Data for Name: admin; Type: TABLE DATA; Schema: public; Owner: pino
+--
+
+COPY admin (id, email, name, password, surname) FROM stdin;
+\.
+
+
+--
+-- Data for Name: exams; Type: TABLE DATA; Schema: public; Owner: pino
+--
+
+COPY exams (id, code, prenotationdate, visitdate, examtypology_id, medic_id, patient_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: examtypologies; Type: TABLE DATA; Schema: public; Owner: pino
+--
+
+COPY examtypologies (id, code, cost, description, name) FROM stdin;
+1	codeCiao	4	vxcvxcvxcvxcvcxv	nome
+3	codeCiaof	4	vxcvxcvxcvxcvcxv	nome
+\.
+
+
+--
+-- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: public; Owner: pino
+--
+
+SELECT pg_catalog.setval('hibernate_sequence', 3, true);
+
+
+--
+-- Data for Name: medics; Type: TABLE DATA; Schema: public; Owner: pino
+--
+
+COPY medics (id, name, specialization, surname) FROM stdin;
+\.
+
+
+--
+-- Data for Name: patients; Type: TABLE DATA; Schema: public; Owner: pino
+--
+
+COPY patients (id, email, name, password, surname) FROM stdin;
+\.
+
+
+--
+-- Data for Name: prerequisites; Type: TABLE DATA; Schema: public; Owner: pino
+--
+
+COPY prerequisites (id, description, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: prerequisites_examtypologies; Type: TABLE DATA; Schema: public; Owner: pino
+--
+
+COPY prerequisites_examtypologies (prerequisites_id, examtypologies_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: results; Type: TABLE DATA; Schema: public; Owner: pino
+--
+
+COPY results (id, value, exam_id, resulttypology_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: resulttypologies; Type: TABLE DATA; Schema: public; Owner: pino
+--
+
+COPY resulttypologies (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: resulttypologies_examtypologies; Type: TABLE DATA; Schema: public; Owner: pino
+--
+
+COPY resulttypologies_examtypologies (resulttypologies_id, examtypologies_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: pino
+--
+
+COPY roles (id, role) FROM stdin;
+\.
+
+
+--
+-- Data for Name: roles_admin; Type: TABLE DATA; Schema: public; Owner: pino
+--
+
+COPY roles_admin (roles_id, admins_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: roles_patients; Type: TABLE DATA; Schema: public; Owner: pino
+--
+
+COPY roles_patients (role_id, patients_id) FROM stdin;
+\.
+
+
+--
+-- Name: admin_pkey; Type: CONSTRAINT; Schema: public; Owner: pino; Tablespace: 
+--
+
+ALTER TABLE ONLY admin
+    ADD CONSTRAINT admin_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: exams_pkey; Type: CONSTRAINT; Schema: public; Owner: pino; Tablespace: 
+--
+
+ALTER TABLE ONLY exams
+    ADD CONSTRAINT exams_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: examtypologies_pkey; Type: CONSTRAINT; Schema: public; Owner: pino; Tablespace: 
+--
+
+ALTER TABLE ONLY examtypologies
+    ADD CONSTRAINT examtypologies_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: medics_pkey; Type: CONSTRAINT; Schema: public; Owner: pino; Tablespace: 
+--
+
+ALTER TABLE ONLY medics
+    ADD CONSTRAINT medics_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: patients_pkey; Type: CONSTRAINT; Schema: public; Owner: pino; Tablespace: 
+--
+
+ALTER TABLE ONLY patients
+    ADD CONSTRAINT patients_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: prerequisites_examtypologies_pkey; Type: CONSTRAINT; Schema: public; Owner: pino; Tablespace: 
+--
+
+ALTER TABLE ONLY prerequisites_examtypologies
+    ADD CONSTRAINT prerequisites_examtypologies_pkey PRIMARY KEY (prerequisites_id, examtypologies_id);
+
+
+--
+-- Name: prerequisites_pkey; Type: CONSTRAINT; Schema: public; Owner: pino; Tablespace: 
+--
+
+ALTER TABLE ONLY prerequisites
+    ADD CONSTRAINT prerequisites_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: results_pkey; Type: CONSTRAINT; Schema: public; Owner: pino; Tablespace: 
+--
+
+ALTER TABLE ONLY results
+    ADD CONSTRAINT results_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: resulttypologies_pkey; Type: CONSTRAINT; Schema: public; Owner: pino; Tablespace: 
+--
+
+ALTER TABLE ONLY resulttypologies
+    ADD CONSTRAINT resulttypologies_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: roles_pkey; Type: CONSTRAINT; Schema: public; Owner: pino; Tablespace: 
+--
+
+ALTER TABLE ONLY roles
+    ADD CONSTRAINT roles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: uk_2x8qmdklcfkabdqk8vc857chc; Type: CONSTRAINT; Schema: public; Owner: pino; Tablespace: 
+--
+
+ALTER TABLE ONLY examtypologies
+    ADD CONSTRAINT uk_2x8qmdklcfkabdqk8vc857chc UNIQUE (code);
+
+
+--
+-- Name: uk_9vl25tb2un41h3rev69s6gasf; Type: CONSTRAINT; Schema: public; Owner: pino; Tablespace: 
+--
+
+ALTER TABLE ONLY exams
+    ADD CONSTRAINT uk_9vl25tb2un41h3rev69s6gasf UNIQUE (code);
+
+
+--
+-- Name: uk_a370hmxgv0l5c9panryr1ji7d; Type: CONSTRAINT; Schema: public; Owner: pino; Tablespace: 
+--
+
+ALTER TABLE ONLY patients
+    ADD CONSTRAINT uk_a370hmxgv0l5c9panryr1ji7d UNIQUE (email);
+
+
+--
+-- Name: uk_c0r9atamxvbhjjvy5j8da1kam; Type: CONSTRAINT; Schema: public; Owner: pino; Tablespace: 
+--
+
+ALTER TABLE ONLY admin
+    ADD CONSTRAINT uk_c0r9atamxvbhjjvy5j8da1kam UNIQUE (email);
+
+
+--
+-- Name: uk_g50w4r0ru3g9uf6i6fr4kpro8; Type: CONSTRAINT; Schema: public; Owner: pino; Tablespace: 
+--
+
+ALTER TABLE ONLY roles
+    ADD CONSTRAINT uk_g50w4r0ru3g9uf6i6fr4kpro8 UNIQUE (role);
+
+
+--
+-- Name: uk_hcpaygv5c7vgsxsdbnk7bv251; Type: CONSTRAINT; Schema: public; Owner: pino; Tablespace: 
+--
+
+ALTER TABLE ONLY prerequisites
+    ADD CONSTRAINT uk_hcpaygv5c7vgsxsdbnk7bv251 UNIQUE (name);
+
+
+--
+-- Name: fk1dkhmxnvrjk9gn2hh1focikb9; Type: FK CONSTRAINT; Schema: public; Owner: pino
+--
+
+ALTER TABLE ONLY prerequisites_examtypologies
+    ADD CONSTRAINT fk1dkhmxnvrjk9gn2hh1focikb9 FOREIGN KEY (prerequisites_id) REFERENCES prerequisites(id);
+
+
+--
+-- Name: fk1u1tenetpckt4gn08l028fj2w; Type: FK CONSTRAINT; Schema: public; Owner: pino
+--
+
+ALTER TABLE ONLY results
+    ADD CONSTRAINT fk1u1tenetpckt4gn08l028fj2w FOREIGN KEY (resulttypology_id) REFERENCES resulttypologies(id);
+
+
+--
+-- Name: fk21wadxtr0btvmi7l4wjfdu7yc; Type: FK CONSTRAINT; Schema: public; Owner: pino
+--
+
+ALTER TABLE ONLY roles_admin
+    ADD CONSTRAINT fk21wadxtr0btvmi7l4wjfdu7yc FOREIGN KEY (admins_id) REFERENCES admin(id);
+
+
+--
+-- Name: fk2bfe41l1g9u26dudayr4v0vxe; Type: FK CONSTRAINT; Schema: public; Owner: pino
+--
+
+ALTER TABLE ONLY exams
+    ADD CONSTRAINT fk2bfe41l1g9u26dudayr4v0vxe FOREIGN KEY (patient_id) REFERENCES patients(id);
+
+
+--
+-- Name: fk6j97i3kembwro40gpthtrl4x3; Type: FK CONSTRAINT; Schema: public; Owner: pino
+--
+
+ALTER TABLE ONLY resulttypologies_examtypologies
+    ADD CONSTRAINT fk6j97i3kembwro40gpthtrl4x3 FOREIGN KEY (resulttypologies_id) REFERENCES resulttypologies(id);
+
+
+--
+-- Name: fk78ccesekjhnup9dihmh3bt863; Type: FK CONSTRAINT; Schema: public; Owner: pino
+--
+
+ALTER TABLE ONLY exams
+    ADD CONSTRAINT fk78ccesekjhnup9dihmh3bt863 FOREIGN KEY (examtypology_id) REFERENCES examtypologies(id);
+
+
+--
+-- Name: fk8ad6hb1797op9kn1hkj00pe0i; Type: FK CONSTRAINT; Schema: public; Owner: pino
+--
+
+ALTER TABLE ONLY exams
+    ADD CONSTRAINT fk8ad6hb1797op9kn1hkj00pe0i FOREIGN KEY (medic_id) REFERENCES medics(id);
+
+
+--
+-- Name: fkd9neq629c5ifpchn0ry090873; Type: FK CONSTRAINT; Schema: public; Owner: pino
+--
+
+ALTER TABLE ONLY resulttypologies_examtypologies
+    ADD CONSTRAINT fkd9neq629c5ifpchn0ry090873 FOREIGN KEY (examtypologies_id) REFERENCES examtypologies(id);
+
+
+--
+-- Name: fkdaaos8askcoumo9jah06emdst; Type: FK CONSTRAINT; Schema: public; Owner: pino
+--
+
+ALTER TABLE ONLY prerequisites_examtypologies
+    ADD CONSTRAINT fkdaaos8askcoumo9jah06emdst FOREIGN KEY (examtypologies_id) REFERENCES examtypologies(id);
+
+
+--
+-- Name: fkeow9kom5hrbhv6jhq82bqe68k; Type: FK CONSTRAINT; Schema: public; Owner: pino
+--
+
+ALTER TABLE ONLY results
+    ADD CONSTRAINT fkeow9kom5hrbhv6jhq82bqe68k FOREIGN KEY (exam_id) REFERENCES exams(id);
+
+
+--
+-- Name: fkfl87kev9thvwdwpsdyfwoppch; Type: FK CONSTRAINT; Schema: public; Owner: pino
+--
+
+ALTER TABLE ONLY roles_patients
+    ADD CONSTRAINT fkfl87kev9thvwdwpsdyfwoppch FOREIGN KEY (role_id) REFERENCES roles(id);
+
+
+--
+-- Name: fkioo9exnrw2f346hh59ni5lohm; Type: FK CONSTRAINT; Schema: public; Owner: pino
+--
+
+ALTER TABLE ONLY roles_admin
+    ADD CONSTRAINT fkioo9exnrw2f346hh59ni5lohm FOREIGN KEY (roles_id) REFERENCES roles(id);
+
+
+--
+-- Name: fkp0p5am0do856bk23jmb18b8wk; Type: FK CONSTRAINT; Schema: public; Owner: pino
+--
+
+ALTER TABLE ONLY roles_patients
+    ADD CONSTRAINT fkp0p5am0do856bk23jmb18b8wk FOREIGN KEY (patients_id) REFERENCES patients(id);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
