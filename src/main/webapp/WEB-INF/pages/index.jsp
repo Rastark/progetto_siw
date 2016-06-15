@@ -32,7 +32,7 @@
 			<a href="${cp}/addexamtypology">create a new exam typology</a><br />
 			<a href="${cp}/listexamtypology">View exam typologies list</a><br />
 			<a href="${cp}/addexam">Add a new exam prenotation</a><br /> <a
-				href="${cp}/findexam">Add results to an exam</a><br />
+				href="${cp}/findmedic">Add results to an exam</a><br />
 		</div>
 	</div>
 </body>

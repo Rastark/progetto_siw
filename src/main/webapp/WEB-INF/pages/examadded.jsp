@@ -6,7 +6,7 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <head>
-<title>Exam typology list</title>
+<title>Exam list</title>
 <c:url var="css1" value="/clinic.css" />
 <c:url var="css2" value="/resources/bootstrap.css" />
 <c:url var="css3" value="/resources/page.css" />
@@ -43,7 +43,7 @@
 		<div class="row">
 			<div class="col-md-3"></div>
 			<div class="col-md-6 text-center header-table">
-				<h2>Exam Typologies List</h2>
+				<h2>Exam List</h2>
 			</div>
 			<div class="col-md-3"></div>
 		</div>
@@ -53,7 +53,7 @@
 				<div class="col-md-3 cell cell-left">No</div>
 				<div class="col-md-3 cell">Name</div>
 				<div class="col-md-3 cell">Description</div>
-				<div class="col-md-3 cell cell-right">View</div>
+				<div class="col-md-3 cell cell-right">Delete</div>
 			</div>
 			<div class="col-md-3"></div>
 		</div>
@@ -68,7 +68,7 @@
 					<div class="col-md-3 cell">${examTypology.name}</div>
 					<div class="col-md-3 cell">${examTypology.description}</div>
 					<div class="col-md-3 cell cell-right">
-						<a href="${cp}/view/${examTypology.id}">View Details</a>
+						<a href="${cp}/delete/${examTypology.id}">Delete</a>
 					</div>
 				</div>
 				<div class="col-md-3"></div>
@@ -79,7 +79,7 @@
 			<div class="col-md-6">
 				<div class="col-md-9"></div>
 				<div class="col-md-3">
-					<a href="${cp}/">link</a>
+					<a href="${cp}/addexamtypology">Add More Exam Typologies</a>
 				</div>
 			</div>
 			<div class="col-md-3"></div>
